@@ -1,0 +1,30 @@
+nav {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  flex-basis: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+nav a {
+  text-decoration: none;
+}
+
+/* TODO : For now keep it plain, style will come later */
+/* nav a:link, a:hover, a:visited, a:active {
+  color: black;
+} */
