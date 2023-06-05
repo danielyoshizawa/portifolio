@@ -1,0 +1,132 @@
+{
+  "experiences" : [
+    {
+      "start" : "01/2021",
+      "end" : "11/2022",
+      "company" : "RedWeek.com",
+      "position" : "Full Stack Senior Software Engineer",
+      "location" : "US - Remote",
+      "description" : "At Redweek.com, a website for timeshare rental and resale, I worked on the development of features and bug fixing in a full-stack fashion. My Role involved using a range of technologies, including Perl and PostgreSQL for the backend, and HTML, JavaScript with JQuery, and SASS for the frontend.",
+      "techs" : [
+        "Perl",
+        "JavaScript",
+        "HTML",
+        "SASS",
+        "JQuery",
+        "AWS",
+        "Timeshares"
+      ]
+    },
+    {
+      "start" : "07/2019",
+      "end" : "04/2020",
+      "company" : "Autodesk",
+      "position" : "C++ Senior Software Engineer",
+      "location" : "US - Remote",
+      "description" : "At Autodesk, I worked on the foundation team for the Maya project, a multi-language and multi-platform software used for animation creation in the games and film industry. During my time there, I gained extensive experience in C++, Python, and MEL, and developed a deep understanding of software development principles and best practices.",
+      "techs" : [
+        "C++",
+        "Python",
+        "MEL",
+        "Unit Tests",
+        "Windows",
+        "Linux",
+        "MacOs",
+        "Animation"
+      ]
+    },
+    {
+      "start" : "12/2016",
+      "end" : "09/2018",
+      "company" : "Khomp",
+      "position" : "C++ Software Engineer",
+      "location" : "Florianopolis, SC, BR",
+      "description" : "At Khomp, I worked on the development on embedded systems for the telephony industry, utilizing a wide range of programming languages, network protocols, and UNIX systems. I was responsible for developing solution for Khomp's servers, which required me to leverage my expertise in C++, Python and PHP, as well as testing frameworks like GTests and Catch.",
+      "techs" : [
+        "C++",
+        "Python",
+        "PHP",
+        "Linux",
+        "SIP",
+        "Catch2",
+        "Telecom Industry"
+      ]
+    },
+    {
+      "start" : "06/2016",
+      "end" : "08/2016",
+      "company" : "Camisas Tech",
+      "position" : "Software Developer Intern",
+      "location" : "Boston, MA, USA",
+      "description" : "At Camisas Tech, a small startup abroad, I was selected to lead a team of interns to develop a hybrid application using Ionic and Django. As the first software engineering intern, I played an integral role in organizing the team and establishing Agile development process.",
+      "techs" : [
+        "Javascript",
+        "HTML",
+        "CSS",
+        "Python",
+        "Django",
+        "Ionic",
+        "Startup"
+      ]
+    },
+    {
+      "start" : "12/2012",
+      "end" : "08/2015",
+      "company" : "Audaces",
+      "position" : "C++ Software Engineer",
+      "location" : "Florianopolis, SC, BR",
+      "description" : "Worked on Audaces Idea, a vector image creation software, written mostly in C++, using Agile techniques and Scrum. Participated in the migration of the frameworks and upgrades of the software structure, including moving from Borderland C++ to Visual Studio, VLC to Qt4, and removal of the PostgreSQL database to a file-based system.",
+      "techs" : [
+        "C++",
+        "Python",
+        "CMake",
+        "Boost",
+        "GoogleTests",
+        "Windows",
+        "Fashion Industry"
+      ]
+    },
+    {
+      "start" : "10/2009",
+      "end" : "03/2010",
+      "company" : "GLTb - HSBC",
+      "position" : "Technical Support Analyst",
+      "location" : "Curitiba, PR, BR",
+      "description" : "Provided technical support for the international HSBC group, with more than 33 countries supported. Got recognition from my bosses in U.K. for the quality of the work that I was doing in a very short period of time.",
+      "techs" : [
+        "SQL",
+        "Linux",
+        "Bank"
+      ]
+    },
+    {
+      "start" : "03/2009",
+      "end" : "09/2009",
+      "company" : "HSBC",
+      "position" : "Java Software Developer Intern",
+      "location" : "Curitiba, PR, BR",
+      "description" : "Intern of the Trade software team, involved in development and testing on a waterfall software development environment.",
+      "techs" : [
+        "Java",
+        "SQL",
+        "Windows",
+        "Bank"
+      ]
+    },
+    {
+      "start" : "12/2008",
+      "end" : "03/2009",
+      "company" : "Copel",
+      "position" : "Software Developer Intern",
+      "location" : "Curitiba, PR, BR",
+      "description" : "Involved on the development of a software for electrial grid mapping for technicians on the field.",
+      "techs" : [
+        "C",
+        "QML",
+        "SQL",
+        "Windows",
+        "Electrical Industry"
+      ]
+    }
+  ]
+}
