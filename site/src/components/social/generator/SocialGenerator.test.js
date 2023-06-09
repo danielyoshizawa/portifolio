@@ -27,5 +27,6 @@ test('checks if the social information is correct', () => {
   expect(items.length).toBe(3)
   items.forEach((item, index) => {
     expect(item.firstChild).toHaveProperty("href", MOCK_SOCIAL[index].link)
+    expect(item.firstChild.firstChild.nodeName).toBe("svg")
   })
 })
