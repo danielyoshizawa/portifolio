@@ -2,7 +2,7 @@ import './Description.css'
 
 function Description() {
   return (
-    <>
+    <div id="about">
       <h2 className="title-description" data-testid="title-description">Who is Daniel the Software Engineer?</h2>
       <p className="text-description" data-testid="text-description">
         Daniel is an experienced software engineer with a diverse background in various areas of software development.<br />
@@ -10,7 +10,7 @@ function Description() {
         Thorught his carrer, he has been involved in numerous important projects and have gained expertise in a wide variety
         of thechnologies.
       </p>
-    </>
+    </div>
   )
 }
 

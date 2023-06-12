@@ -3,7 +3,7 @@ import WorkCard from './card/WorkCard'
 function WorkExperience(props) {
   const experiences = props.experiences
   return (
-    <>
+    <div id="experience">
       <h2 className="title-work-experience" data-testid="title-work-experience">
         Work Experience
       </h2>
@@ -14,7 +14,7 @@ function WorkExperience(props) {
           ))
         }
       </div>
-    </>
+    </div>
   )
 }
 

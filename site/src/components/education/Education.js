@@ -4,7 +4,7 @@ import EducationCard from './card/EducationCard'
 function Education(props) {
   const education = props.education
   return (
-    <>
+    <div id="education">
       <h2 className="title-education" data-testid="title-education">
         Education
       </h2>
@@ -15,7 +15,7 @@ function Education(props) {
           ))
         }
       </div>
-    </>
+    </div>
   )
 }
 
