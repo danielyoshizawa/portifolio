@@ -1,0 +1,16 @@
+{
+  "contact" : [
+    {
+      "name" : "email",
+      "link" : "mailto:yoshidanielcwb@gmail.com"
+    },
+    {
+      "name" : "linkedin",
+      "link" : "https://www.linkedin.com/in/danielyoshizawa"
+    },
+    {
+      "name" : "github",
+      "link" : "https://github.com/danielyoshizawa"
+    }
+  ]
+}

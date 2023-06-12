@@ -1,0 +1,20 @@
+{
+  "contact" : [
+    {
+      "name" : "email",
+      "link" : "mailto:test@test.com"
+    },
+    {
+      "name" : "linkedin",
+      "link" : "https://www.linkedin.com/in/test"
+    },
+    {
+      "name" : "github",
+      "link" : "https://github.com/test"
+    },
+    {
+      "name" : "facebook",
+      "link" : "https://facebook.com/test"
+    }
+  ]
+}
