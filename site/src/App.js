@@ -7,6 +7,7 @@ import Courses from './components/courses/Courses'
 import Education from './components/education/Education'
 import Social from './components/social/Social'
 import Contact from './components/contact/Contact'
+import Footer from './components/footer/Footer'
 // Load data
 import experienceData from './data/WorkExperience.data.json'
 import coursesData from './data/Courses.data.json'
@@ -25,6 +26,7 @@ function App() {
       <Education education={educationData.education} />
       <Social social={socialData.social} />
       <Contact contact={contactData.contact} />
+      <Footer />
     </>
   );
 }
