@@ -2,7 +2,7 @@ import './Hero.css'
 
 function Hero() {
   return (
-    <>
+    <div className="hero">
       <h1>Daniel Yoshizawa</h1>
       <h2>Senior Software Engineer</h2>
       <p>
@@ -14,7 +14,7 @@ function Hero() {
       <p>
         Throughout my carre, I have been involved in numerous important projects and have gained expertise in a wide variety of technologies.
       </p>
-    </>
+    </div>
   )
 }
 
