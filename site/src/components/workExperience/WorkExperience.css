@@ -1,1 +1,9 @@
-{}
+#experience {
+  margin: auto;
+  max-width: 1120px; /*TODO : Why this difference is happening*/
+  font-size: 1.2rem;
+}
+
+#experience .list-work-experience {
+
+}

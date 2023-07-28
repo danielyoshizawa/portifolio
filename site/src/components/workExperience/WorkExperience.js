@@ -1,4 +1,5 @@
 import WorkCard from './card/WorkCard'
+import './WorkExperience.css'
 
 function WorkExperience(props) {
   const experiences = props.experiences
