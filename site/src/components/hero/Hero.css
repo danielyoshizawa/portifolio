@@ -1,3 +1,5 @@
-{
-
+.hero {
+  margin: auto;
+  max-width: 1080px;
+  font-size: 1.2rem;
 }
