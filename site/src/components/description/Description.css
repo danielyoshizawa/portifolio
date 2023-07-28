@@ -1,1 +1,9 @@
-{}
+#about {
+  margin:auto;
+  padding: 1.2rem;
+  max-width: 1080px;
+  font-size: 1.2rem;
+  background-color: #328CC1;
+  color: white;
+  box-shadow: 0.8rem 0.8rem #D9B310;
+}
