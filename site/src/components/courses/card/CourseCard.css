@@ -1,0 +1,22 @@
+.course-card {
+  margin: 1rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border: 0.1rem solid #D9B310;
+  border-radius: 0.3rem;
+}
+
+.course-card .course-card-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.course-card .course-card-header .item {
+  margin: 0;
+  padding: 0;
+}
+
+.course-card-institution-date {
+  text-align: right;
+}
