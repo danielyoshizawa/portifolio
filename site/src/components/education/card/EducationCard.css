@@ -1,1 +1,18 @@
-{}
+.education-card {
+  margin: 1rem;
+}
+
+.education-card .education-card-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.education-card .item {
+  margin: 0;
+  padding: 0;
+}
+
+.education-card-institution-date {
+  text-align: right;
+}
