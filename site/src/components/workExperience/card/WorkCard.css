@@ -1,1 +1,35 @@
-{}
+.work-card
+{
+  /* margin:auto; */
+  /* max-width: 1080px; */
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  background-color: #328CC1;
+  color: white;
+  box-shadow: 0.8rem 0.8rem #D9B310;
+  margin-bottom: 2rem;
+}
+
+.work-card .work-card-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.work-card .work-card-header .item {
+  padding: 0;
+  margin : 0;
+}
+
+.work-card .techs-work-card {
+  padding: 0;
+  margin: 0;
+}
+
+.work-card .techs-work-card li {
+  display: inline;
+  background-color: #0B3C5D;
+  border-radius: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-right: 1rem;
+}
