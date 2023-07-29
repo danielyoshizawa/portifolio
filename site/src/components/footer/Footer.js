@@ -1,4 +1,5 @@
 import './Footer.css'
+import Section from '../section/Section'
 
 function Footer() {
   return (
@@ -7,13 +8,7 @@ function Footer() {
         <div className="footer-columns">
           <div className="footer-section">
             <h2>Section</h2>
-            <ul>
-              <li><a href="#about">About</a></li>
-              <li><a href="#experience">Experience</a></li>
-              <li><a href="#projects">Projects</a></li>
-              <li><a href="#diplomas">Diplomas</a></li>
-              <li><a href="#certifications">Certifications</a></li>
-            </ul>
+            <Section />
           </div>
           <div className="footer-section">
             <h2>Social</h2>

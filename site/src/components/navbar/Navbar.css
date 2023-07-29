@@ -41,6 +41,7 @@ nav li {
 
 nav a {
   text-decoration: none;
+  color: inherit;
 }
 
 /* TODO : For now keep it plain, style will come later */

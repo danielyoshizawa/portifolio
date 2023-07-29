@@ -6,14 +6,12 @@ test('checks if the navbar has the correct items', () => {
   const about = screen.getByText(/about/i)
   const experience = screen.getByText(/experience/i)
   const projects = screen.getByText(/projects/i)
-  const diplomas = screen.getByText(/diplomas/i)
+  const diplomas = screen.getByText(/education/i)
   const certifications = screen.getByText(/certifications/i)
-  const contact = screen.getByText(/contact/i)
 
   expect(about).toBeInTheDocument()
   expect(experience).toBeInTheDocument()
   expect(projects).toBeInTheDocument()
   expect(diplomas).toBeInTheDocument()
   expect(certifications).toBeInTheDocument()
-  expect(contact).toBeInTheDocument()
 });

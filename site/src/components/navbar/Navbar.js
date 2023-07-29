@@ -1,5 +1,6 @@
 import './Navbar.css'
 import Social from '../social/Social'
+import Section from '../section/Section'
 import socialData from '../../data/Social.data.json'
 
 function Navbar() {
@@ -7,14 +8,7 @@ function Navbar() {
     <div className="background-header">
       <nav>
         <div>
-          <ul>
-            <li>About</li>
-            <li>Experience</li>
-            <li>Projects</li>
-            <li>Diplomas</li>
-            <li>Certifications</li>
-            <li>Contact</li>
-          </ul>
+          <Section />
         </div>
         <div>
           <Social social={socialData.social} />
