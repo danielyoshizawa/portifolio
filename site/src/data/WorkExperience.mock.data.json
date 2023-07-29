@@ -13,7 +13,8 @@
         "Test1 Lang 3",
         "Test1 Lang 4",
         "Test1 Lang 5"
-      ]
+      ],
+      "fixed" : "true"
     },
     {
       "start" : "01/2580",
@@ -28,7 +29,8 @@
         "Test2 Lang 3",
         "Test2 Lang 4",
         "Test2 Lang 5"
-      ]
+      ],
+      "fixed" : "true"
     },
     {
       "start" : "01/1935",
@@ -43,7 +45,8 @@
         "Test3 Lang 3",
         "Test3 Lang 4",
         "Test3 Lang 5"
-      ]
+      ],
+      "fixed" : "false"
     },
     {
       "start" : "01/1935",
@@ -58,7 +61,8 @@
         "Test4 Lang 3",
         "Test4 Lang 4",
         "Test4 Lang 5"
-      ]
+      ],
+      "fixed" : "false"
     },
     {
       "start" : "01/1935",
@@ -73,7 +77,8 @@
         "Test5 Lang 3",
         "Test5 Lang 4",
         "Test5 Lang 5"
-      ]
+      ],
+      "fixed" : "true"
     }
   ]
 }

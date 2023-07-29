@@ -1,28 +1,32 @@
 {
   "education" : [
     {
-      "name" : "Test 1",
+      "name"  : "Test 1",
       "start" : "04/1546",
-      "end" : "11/1782",
-      "type" : "Test 1"
+      "end"   : "11/1782",
+      "type"  : "Test 1",
+      "fixed" : "true"
     },
     {
-      "name" : "Test 2",
+      "name"  : "Test 2",
       "start" : "04/1546",
-      "end" : "11/1782",
-      "type" : "Test 2"
+      "end"   : "11/1782",
+      "type"  : "Test 2",
+      "fixed" : "false"
     },
     {
-      "name" : "Test 3",
+      "name"  : "Test 3",
       "start" : "04/1546",
-      "end" : "11/1782",
-      "type" : "Test 3"
+      "end"   : "11/1782",
+      "type"  : "Test 3",
+      "fixed" : "true"
     },
     {
-      "name" : "Test 4",
+      "name"  : "Test 4",
       "start" : "04/1546",
-      "end" : "11/1782",
-      "type" : "Test 4"
+      "end"   : "11/1782",
+      "type"  : "Test 4",
+      "fixed" : "true"
     }
   ]
 }

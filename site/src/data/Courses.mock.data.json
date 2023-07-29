@@ -5,35 +5,40 @@
       "date"        : "05/2023",
       "institution" : "Test 1",
       "validation"  : "TestTestTest",
-      "link"        : "https://test.com/test"
+      "link"        : "https://test.com/test",
+      "fixed"       : "true"
     },
     {
       "name"        : "Test 2",
       "date"        : "05/2023",
       "institution" : "Test 2",
       "validation"  : "TestTestTest",
-      "link"        : "https://test.com/test"
+      "link"        : "https://test.com/test",
+      "fixed"       : "true"
     },
     {
       "name"        : "Test 3",
       "date"        : "05/2023",
       "institution" : "Test 3",
       "validation"  : "TestTestTest",
-      "link"        : "https://test.com/test"
+      "link"        : "https://test.com/test",
+      "fixed"       : "false"
     },
     {
       "name"        : "Test 4",
       "date"        : "05/2023",
       "institution" : "Test 4",
       "validation"  : "TestTestTest",
-      "link"        : "https://test.com/test"
+      "link"        : "https://test.com/test",
+      "fixed"       : "true"
     },
     {
       "name"        : "Test 5",
       "date"        : "05/2023",
       "institution" : "Test 5",
       "validation"  : "TestTestTest",
-      "link"        : "https://test.com/test"
+      "link"        : "https://test.com/test",
+      "fixed"       : "false"
     }
   ]
 }
