@@ -1,10 +1,8 @@
 import './WorkCard.css'
-import React, { useState, useContext } from 'react';
 
 function WorkCard(props) {
-  const [show, setShow] = useState(false);
   return (
-    <div className={"work-card " + (show || props.showMore || props.item.fixed == "true" ? "show" : "hide")} data-testid="work-card" key={`${props.index}-work-card`}>
+    <div className={"work-card " + (props.item.fixed == "true" || props.showMore ? "show" : "hide")} data-testid="work-card" key={`${props.index}-work-card`}>
       <div className="work-card-header">
         <div className="work-card-company-position">
           <h2 className="company-work-card item" data-testid="company-work-card" key={`${props.index}-company-work-card`}>{props.item.company}</h2>

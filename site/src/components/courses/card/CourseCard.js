@@ -1,10 +1,8 @@
 import './CourseCard.css'
-import React, {useState} from 'react'
 
 function CourseCard (props) {
-  const [show, setShow] = useState(false);
   return (
-    <div className={"course-card " + (show || props.showMore || props.item.fixed == "true" ? "show" : "hide")} data-testid="course-card" key={`${props.index}-course-card`}>
+    <div className={"course-card " + (props.item.fixed == "true" || props.showMore ? "show" : "hide")} data-testid="course-card" key={`${props.index}-course-card`}>
       <div className="course-card-header">
         <div>
           <h3 className="name-course-card item" data-testid="name-course-card" key={`${props.index}-name-course-card`}>{props.item.name}</h3>

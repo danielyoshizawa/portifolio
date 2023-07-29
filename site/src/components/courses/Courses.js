@@ -1,6 +1,6 @@
 import './Courses.css'
 import CourseCard from './card/CourseCard'
-import React, {useState} from 'react'
+import {useState} from 'react'
 
 function Courses (props) {
   const courses = props.courses

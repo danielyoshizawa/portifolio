@@ -1,5 +1,5 @@
 import './WorkExperience.css'
-import React, {useState} from 'react'
+import {useState} from 'react'
 import WorkCard from './card/WorkCard'
 
 function WorkExperience(props) {
