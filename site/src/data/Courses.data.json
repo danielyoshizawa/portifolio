@@ -5,42 +5,48 @@
       "date"        : "05/2023",
       "institution" : "Meta",
       "validation"  : "XJSYD5DGHF6E",
-      "link"        : "https://coursera.org/verify/specialization/XJSYD5DGHF6E"
+      "link"        : "https://coursera.org/verify/specialization/XJSYD5DGHF6E",
+      "fixed"       : "true"
     },
     {
       "name"        : "Meta Front-End Developer Certificate",
       "date"        : "04/2023",
       "institution" : "Meta",
       "validation"  : "6c0bc9e5-e9c1-454a-b4ba-00db667c3014",
-      "link"        : "https://www.credly.com/badges/6c0bc9e5-e9c1-454a-b4ba-00db667c3014/linked_in_profile"
+      "link"        : "https://www.credly.com/badges/6c0bc9e5-e9c1-454a-b4ba-00db667c3014/linked_in_profile",
+      "fixed"       : "true"
     },
     {
       "name"        : "Graph Developer - Professional",
       "date"        : "12/2022",
       "institution" : "Apollo GraphQL",
       "validation"  : "Placeholder",
-      "link"        : "Placeholder"
+      "link"        : "Placeholder",
+      "fixed"       : "true"
     },
     {
       "name"        : "Placeholder",
       "date"        : "04/2023",
       "institution" : "Placeholder",
       "validation"  : "Placeholder",
-      "link"        : "Placeholder"
+      "link"        : "Placeholder",
+      "fixed"       : "False"
     },
     {
       "name"        : "Placeholder",
       "date"        : "04/2023",
       "institution" : "Placeholder",
       "validation"  : "Placeholder",
-      "link"        : "Placeholder"
+      "link"        : "Placeholder",
+      "fixed"       : "false"
     },
     {
       "name"        : "Placeholder",
       "date"        : "04/2023",
       "institution" : "Placeholder",
       "validation"  : "Placeholder",
-      "link"        : "Placeholder"
+      "link"        : "Placeholder",
+      "fixed"       : "true"
     }
   ]
 }

@@ -13,3 +13,16 @@
 #certifications a {
   color: #D9B310;
 }
+
+.certifications-show-more {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+.certifications-show-more .item {
+  color: white;
+  border: 0.1rem solid #D9B310;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
