@@ -7,3 +7,15 @@
 #experience .list-work-experience {
 
 }
+
+#experience .experience-show-more {
+  display: flex;
+  justify-content: center;
+}
+
+#experience .experience-show-more .item {
+  color: #1D2731;
+  border: 0.1rem solid #D9B310;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}

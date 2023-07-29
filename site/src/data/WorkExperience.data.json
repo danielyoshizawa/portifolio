@@ -15,7 +15,8 @@
         "JQuery",
         "AWS",
         "Timeshares"
-      ]
+      ],
+      "fixed" : "true"
     },
     {
       "start" : "07/2019",
@@ -33,7 +34,8 @@
         "Linux",
         "MacOs",
         "Animation"
-      ]
+      ],
+      "fixed" : "true"
     },
     {
       "start" : "12/2016",
@@ -50,7 +52,8 @@
         "SIP",
         "Catch2",
         "Telecom Industry"
-      ]
+      ],
+      "fixed" : "true"
     },
     {
       "start" : "06/2016",
@@ -67,7 +70,8 @@
         "Django",
         "Ionic",
         "Startup"
-      ]
+      ],
+      "fixed" : "false"
     },
     {
       "start" : "12/2012",
@@ -84,7 +88,8 @@
         "GoogleTests",
         "Windows",
         "Fashion Industry"
-      ]
+      ],
+      "fixed" : "true"
     },
     {
       "start" : "10/2009",
@@ -97,7 +102,8 @@
         "SQL",
         "Linux",
         "Bank"
-      ]
+      ],
+      "fixed" : "false"
     },
     {
       "start" : "03/2009",
@@ -111,7 +117,8 @@
         "SQL",
         "Windows",
         "Bank"
-      ]
+      ],
+      "fixed" : "false"
     },
     {
       "start" : "12/2008",
@@ -126,7 +133,8 @@
         "SQL",
         "Windows",
         "Electrical Industry"
-      ]
+      ],
+      "fixed" : "false"
     }
   ]
 }
