@@ -2,7 +2,7 @@ import './EducationCard.css'
 
 function EducationCard (props) {
   return (
-    <div className="education-card" data-testid="education-card" key={`${props.index}-education-card`}>
+    <div className={"education-card " + (props.item.fixed == "true" || props.showMore ? "show" : "hide")} data-testid="education-card" key={`${props.index}-education-card`}>
       <div className="education-card-header">
         <div>
           <h3 className="name-education-card item" data-testid="name-education-card" key={`${props.index}-name-education-card`}>{props.item.name}</h3>

@@ -3,6 +3,14 @@
   max-width: 1080px;
 }
 
-.title-education {
-  
+.education-show-more {
+  display: flex;
+  justify-content: center;
+}
+
+.education-show-more .item {
+  color: #1D2731;
+  border: 0.1rem solid #D9B310;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 }
