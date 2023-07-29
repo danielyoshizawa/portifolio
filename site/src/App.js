@@ -5,15 +5,11 @@ import Description from './components/description/Description'
 import WorkExperience from './components/workExperience/WorkExperience'
 import Courses from './components/courses/Courses'
 import Education from './components/education/Education'
-import Social from './components/social/Social'
-import Contact from './components/contact/Contact'
 import Footer from './components/footer/Footer'
 // Load data
 import experienceData from './data/WorkExperience.data.json'
 import coursesData from './data/Courses.data.json'
 import educationData from './data/Education.data.json'
-import socialData from './data/Social.data.json'
-import contactData from './data/Contact.data.json'
 
 function App() {
   return (
@@ -24,8 +20,6 @@ function App() {
       <WorkExperience experiences={experienceData.experiences} />
       <Courses courses={coursesData.courses} />
       <Education education={educationData.education} />
-      <Social social={socialData.social} />
-      <Contact contact={contactData.contact} />
       <Footer />
     </>
   );
