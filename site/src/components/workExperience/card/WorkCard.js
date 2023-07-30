@@ -1,4 +1,5 @@
 import './WorkCard.css'
+import WorkCardDescription from './WorkCardDescription'
 
 function WorkCard(props) {
   return (
@@ -14,7 +15,7 @@ function WorkCard(props) {
         </div>
       </div>
       <div>
-        <p className="description-work-card" data-testid="description-work-card" key={`${props.index}-description-work-card`}>{props.item.description}</p>
+        <WorkCardDescription index={props.index} description={props.item.description} maxLength="100" />
         <ul className="techs-work-card" data-testid="techs-work-card" key={`${props.index}-techs-work-card`}>
           {props.item.techs.map((item, index) => (
             <li key={`${index}-${props.index}-tech-item-work-card`}>{item}</li>
