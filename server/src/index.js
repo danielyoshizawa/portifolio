@@ -4,9 +4,11 @@ const port = 3001
 const fm = require('./modules/util/FileManager')
 const data = require('./config/data')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 app.use(bodyParser.urlencoded({extended : false}))
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
   res.send("Invalid")
