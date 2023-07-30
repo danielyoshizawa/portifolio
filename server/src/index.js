@@ -4,19 +4,21 @@ const port = 3001
 const fm = require('./modules/util/FileManager')
 const data = require('./config/data')
 const bodyParser = require('body-parser')
+const cors = require('cors')
 
 app.use(bodyParser.urlencoded({extended : false}))
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
-  res.status(404).send("Invalid")
+  res.send("Invalid")
 })
 
 app.get('/description', async (req, res) => {
   await fm.ReadFrom(data.filepath['description']).then((data) => {
     res.json(data)
   }).catch((error) => {
-    res.status(500).send("Failure")
+    res.status(500).send(error)
   })
 })
 
@@ -25,7 +27,7 @@ app.post('/description', async (req, res) => {
   await fm.WriteTo(data.filepath['description'], content).then(() => {
     res.status(200).send("Success")
   }).catch((error) => {
-    res.status(500).send("Failure")
+    res.status(500).send(error)
   })
 })
 

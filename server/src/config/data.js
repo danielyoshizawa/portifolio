@@ -1,5 +1,5 @@
 const filepath = {
-  description : '../data/description/description.json'
+  description : 'data/description/description.json'
 }
 
 module.exports = {filepath}

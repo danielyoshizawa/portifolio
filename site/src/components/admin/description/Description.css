@@ -1,0 +1,9 @@
+.description-form {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.description-form textarea {
+  width: auto;
+  height: 20rem;
+}
