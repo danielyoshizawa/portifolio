@@ -1,6 +1,9 @@
 .description-form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-content: space-between;
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+.description-form textarea {
+  width: auto;
+  height: 20rem;
 }

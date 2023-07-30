@@ -1,34 +1,63 @@
 import './Description.css'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import ReactDOM from 'react-dom/client'
 
 function Description() {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
+  const [status, setStatus] = useState("")
+
+  useEffect(() => {
+    fetch("http://localhost:3001/description")
+      .then((response) => response.json())
+      .then((json) => {
+        const resp = JSON.parse(json)
+        setTitle(resp.title)
+        setDescription(resp.description)
+      })
+  }, [])
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // TODO : Save the data into the file.
-
+    const resp = {
+      title       : title,
+      description : description
+    }
+    fetch("http://localhost:3001/description",
+      {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(resp),
+        headers : {
+          'Content-Type' : 'application/json'
+        }
+      }
+    )
+    .then((response) => {
+      if (response.status == 200) {
+        setStatus("Success")
+      } else {
+        setStatus("Failure")
+      }
+    })
   }
 
   return (
     <form className="description-form" onSubmit={handleSubmit}>
-      <label>Title
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-      </label>
-      <label>Description
-        <textarea
-          value={description}
-          onChange={(e) => {setDescription(e.target.value)}}
-        >
-        </textarea>
-      </label>
+      <label>Title :</label>
+      <input
+        type="text"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+      />
+      <label>Description :</label>
+      <textarea
+        value={description}
+        onChange={(e) => {setDescription(e.target.value)}}
+      >
+      </textarea>
       <input type="submit" />
+      <p>{status}</p>
     </form>
   )
 }
