@@ -1,15 +1,7 @@
 import './WorkCard.css'
-import {useState} from 'react'
+import WorkCardDescription from './WorkCardDescription'
 
 function WorkCard(props) {
-  const [readMore, setReadMore] = useState(false);
-  let description = props.item.description;
-  const useReadMore = description.length > 100;
-
-  if (useReadMore) {
-    description = description.substring(0, 99);
-  }
-
   return (
     <div className={"work-card " + (props.item.fixed == "true" || props.showMore ? "show" : "hide")} data-testid="work-card" key={`${props.index}-work-card`}>
       <div className="work-card-header">
@@ -23,15 +15,7 @@ function WorkCard(props) {
         </div>
       </div>
       <div>
-        <p className="description-work-card" data-testid="description-work-card" key={`${props.index}-description-work-card`}>
-          {readMore ? props.item.description : description}
-          {
-            useReadMore ?
-            <a className="description-work-card-read-more" data-testid="description-work-card-read-more" onClick={() => (setReadMore(!readMore))}>{readMore ? " - Read Less..." : " - Read More..."}</a>
-            : ""
-          }
-        </p>
-
+        <WorkCardDescription index={props.index} description={props.item.description} maxLength="100" />
         <ul className="techs-work-card" data-testid="techs-work-card" key={`${props.index}-techs-work-card`}>
           {props.item.techs.map((item, index) => (
             <li key={`${index}-${props.index}-tech-item-work-card`}>{item}</li>
