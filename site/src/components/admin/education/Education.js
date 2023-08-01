@@ -2,6 +2,8 @@ import './Education.css'
 import {useState, useEffect} from 'react'
 import ReactDOM from 'react-dom/client'
 import isEmpty from '../../util/IsEmpty'
+import validate from '../../util/validate'
+import educationSchema from '../../../schemas/EducationSchema'
 
 function Education() {
   const [educations, setEducations] = useState()
@@ -20,8 +22,25 @@ function Education() {
       })
   }, [])
 
+  const validateAll = (items) => {
+    const error = []
+    let valid = true;
+    items.map((item) => {
+      const resp = validate(item, educationSchema)
+      if(!resp.valid) {
+        valid = false
+        error.push(resp.error)
+      }
+    })
+    setStatus(error)
+    return valid
+  }
+
   useEffect(() => {
     if (toSubmit.length === 0) return
+
+    if (!validateAll(toSubmit.education)) return
+
     fetch("http://localhost:3001/education",
       {
         method: 'POST',
@@ -60,13 +79,25 @@ function Education() {
     setToSubmit(tempEducations)
   }
 
+  const onDelete = (index) => {
+    const tempEducations =
+      educations.education.slice(0, index)
+        .concat(
+          educations.education.slice(index + 1, educations.education.length)
+      )
+    setEducations({ education : [...tempEducations ]} )
+  }
+
   return (
     <div className="education">
       <ul>
         { educations && educations.education &&
           educations.education.map((item, index) => {
               return (
-                <li key={index}>{item.name} - {item.start} | {item.end} - {item.type} - Fixed {item.fixed == "true" ? "yes" : "no"} | Edit | Delete</li>
+                <li key={index}>
+                  {index} | {item.name} - {item.course} - {item.start} | {item.end} - {item.type} - Fixed {item.fixed == "true" ? "yes" : "no"}
+                  <div onClick={() => onDelete(index)}>Delete</div>
+                </li>
               )
             }
           )
@@ -81,7 +112,6 @@ function Education() {
             {...newEducation,
               name : e.target.value
             })}
-          required
         />
         <label>Course Title :</label>
         <input
@@ -91,7 +121,6 @@ function Education() {
             {...newEducation,
               course : e.target.value
             })}
-          required
         />
         <label>Course Type :</label>
         <input
@@ -101,7 +130,6 @@ function Education() {
             {...newEducation,
               type : e.target.value
             })}
-          required
         />
         <label>Start Year:</label>
         <input
@@ -111,7 +139,6 @@ function Education() {
             {...newEducation,
               start : e.target.value
             })}
-          required
         />
         <label>End Year :</label>
         <input
@@ -121,7 +148,6 @@ function Education() {
             {...newEducation,
               end : e.target.value
             })}
-          required
         />
         <label>Fixed :</label>
         <input

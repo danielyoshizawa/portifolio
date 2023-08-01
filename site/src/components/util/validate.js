@@ -1,28 +1,3 @@
-// Receive a schema and an object,
-// check one against the other
-
-// Schema template
-// {
-//   fields : [
-//     {
-//       name       : "",
-//       type       : "",
-//       required   : "",
-//       minLenght  : 0, // optional
-//       maxLenght  : 0, // optional
-//       options    : [], // optional
-//     },
-//   ]
-// }
-
-// Object example (Education.js)
-// {
-//   field1 : "",
-//   field2 : 0,
-//   field3 : true,
-//   field4 : [],
-// }
-
 function validateMinLength(value, field) {
   return !( field.hasOwnProperty("minLength") && value < field.minLength )
 }
@@ -89,12 +64,17 @@ function validateArray(value, field) {
 }
 
 function validateRequired(value) {
-  return !(value === undefined || value === null )
+  return !(value === undefined || value === null || value === "")
 }
 
 function validate(obj, schema) {
+  // TODO : Refine errors
+  let response = {
+    valid : true,
+    status : "valid",
+    error  : []
+  }
   const fields = schema.fields; // Array of elements of the schema
-  let valid = true; // Will be valid until provem guilt
   fields.map((field) => {
     const name = field.name
     if (
@@ -102,7 +82,10 @@ function validate(obj, schema) {
       && field.required === true
       && obj.hasOwnProperty(name) === false
     ) {
-      return false
+      response.valid = false
+      response.status = "invalid"
+      response.error.push(`Field "${name}" is required but was not defined`)
+      return response
     }
 
     // If the obj has the field we need to test
@@ -112,36 +95,45 @@ function validate(obj, schema) {
       if (field.required === true) {
         if (validateRequired(objValue) === false)
         {
-          valid = false;
+          response.valid = false
+          response.status = "invalid"
+          response.error.push(`Field "${name}" is required was set, however was defined but is null or undefined`)
         }
-        // Leaving space here because I want to return all the invalid fields
       }
 
       if (field.type === "text") {
         if (validateText(objValue, field) === false) {
-          valid = false;
+          response.valid = false
+          response.status = "invalid"
+          response.error.push(`Field "${name}" of type "${field.type}" with value "${objValue}" is invalid`)
         }
       }
       if (field.type === "number") {
         if (validateNumber(objValue, field) === false) {
-          valid = false
+          response.valid = false
+          response.status = "invalid"
+          response.error.push(`Field "${name}" of type "${field.type}" with value "${objValue}" is invalid`)
         }
       }
       if (field.type === "boolean") {
         if (validateBoolean(objValue, field) === false) {
-          valid = false
+          response.valid = false
+          response.status = "invalid"
+          response.error.push(`Field "${name}" of type "${field.type}" with value "${objValue}" is invalid`)
         }
       }
       // All elements will be treated as text for now
       if (field.type === "array") {
         if (validateArray(objValue, field) === false) {
-          valid = false
+          response.valid = false
+          response.status = "invalid"
+          response.error.push(`Field "${name}" of type "${field.type}" with value "${objValue}" is invalid`)
         }
       }
     }
   })
 
-  return valid;
+  return response;
 }
 
 export default validate

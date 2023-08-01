@@ -46,12 +46,14 @@ const MOCK_OBJECT_TEXT_FAIL = {
 }
 
 const MOCK_OBJECT_NUMBER_PASS = {
+  field1 : "Test",
   field2 : 42,
   field3 : true,
   field4 : ['Test']
 }
 
 const MOCK_OBJECT_NUMBER_FAIL = {
+  field1 : "Test",
   field2 : 9000,
   field3 : true,
   field4 : ['Test']
@@ -97,22 +99,22 @@ const MOCK_OBJECT_FAIL = {
 
 test('Check validate helper', () => {
   // Testing text validation
-  expect(validate(MOCK_OBJECT_TEXT_PASS, MOCK_SCHEMA)).toBe(true)
-  expect(validate(MOCK_OBJECT_TEXT_FAIL, MOCK_SCHEMA)).toBe(false)
+  expect(validate(MOCK_OBJECT_TEXT_PASS, MOCK_SCHEMA).valid).toBe(true)
+  expect(validate(MOCK_OBJECT_TEXT_FAIL, MOCK_SCHEMA).valid).toBe(false)
 
   // Testing number validation
-  expect(validate(MOCK_OBJECT_NUMBER_PASS, MOCK_SCHEMA)).toBe(true)
-  expect(validate(MOCK_OBJECT_NUMBER_FAIL, MOCK_SCHEMA)).toBe(false)
+  expect(validate(MOCK_OBJECT_NUMBER_PASS, MOCK_SCHEMA).valid).toBe(true)
+  expect(validate(MOCK_OBJECT_NUMBER_FAIL, MOCK_SCHEMA).valid).toBe(false)
 
   // Testing boolean validation
-  expect(validate(MOCK_OBJECT_BOOLEAN_PASS, MOCK_SCHEMA)).toBe(true)
-  expect(validate(MOCK_OBJECT_BOOLEAN_FAIL, MOCK_SCHEMA)).toBe(false)
+  expect(validate(MOCK_OBJECT_BOOLEAN_PASS, MOCK_SCHEMA).valid).toBe(true)
+  expect(validate(MOCK_OBJECT_BOOLEAN_FAIL, MOCK_SCHEMA).valid).toBe(false)
 
   // Testing array validation
-  expect(validate(MOCK_OBJECT_ARRAY_PASS, MOCK_SCHEMA)).toBe(true)
-  expect(validate(MOCK_OBJECT_ARRAY_FAIL, MOCK_SCHEMA)).toBe(false)
+  expect(validate(MOCK_OBJECT_ARRAY_PASS, MOCK_SCHEMA).valid).toBe(true)
+  expect(validate(MOCK_OBJECT_ARRAY_FAIL, MOCK_SCHEMA).valid).toBe(false)
 
   // Testing generic objects
-  expect(validate(MOCK_OBJECT_PASS, MOCK_SCHEMA)).toBe(true)
-  expect(validate(MOCK_OBJECT_FAIL, MOCK_SCHEMA)).toBe(false)
+  expect(validate(MOCK_OBJECT_PASS, MOCK_SCHEMA).valid).toBe(true)
+  expect(validate(MOCK_OBJECT_FAIL, MOCK_SCHEMA).valid).toBe(false)
 })
