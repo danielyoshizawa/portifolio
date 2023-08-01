@@ -22,56 +22,44 @@
 //   field3 : true,
 //   field4 : [],
 // }
+
+function validateMinLength(value, field) {
+  return !( field.hasOwnProperty("minLength") && value < field.minLength )
+}
+
+function validateMaxLength(value, field) {
+  return !( field.hasOwnProperty("maxLength") && value > field.maxLength)
+}
+
+function validateOptions(value ,field) {
+  return !(field.hasOwnProperty("options") && !(field.options.includes(value)))
+}
+
 function validateText(value, field) {
-    // minLenght
-    if (
-      field.hasOwnProperty("minLength")
-      && value.length < field.minLength
-    ) {
+    if (!validateMinLength(value.length, field)) {
       return false;
     }
-    if (
-      field.hasOwnProperty("maxLength")
-      && value.length > field.maxLength
-    ) {
+    if (!validateMaxLength(value.length, field)) {
       return false;
     }
-    let validOptions = false;
-    if (field.hasOwnProperty("options")) {
-      field.options.map((opt) => {
-        if (opt === value) {
-          validOptions = true;
-          return
-        }
-      })
+    if (!validateOptions(value, field)) {
+      return false;
     }
-    return validOptions;
+
+    return true;
 }
 
 function validateNumber(value, field) {
-  // minLenght
-  if (
-    field.hasOwnProperty("minLength")
-    && value < field.minLength
-  ) {
+  if (!validateMinLength(value, field)) {
     return false;
   }
-  if (
-    field.hasOwnProperty("maxLength")
-    && value > field.maxLength
-  ) {
+  if (!validateMaxLength(value, field)) {
     return false;
   }
-  if (field.hasOwnProperty("options")) {
-    let validOptions = false;
-    field.options.map((opt) => {
-      if (opt === value) {
-        validOptions = true;
-        return
-      }
-    })
-    return validOptions;
+  if (!validateOptions(value, field)) {
+    return false;
   }
+
   return true;
 }
 
@@ -79,17 +67,10 @@ function validateBoolean(value, field) {
   if (typeof value !== 'boolean') {
     return false
   }
-
-  if (field.hasOwnProperty("options")) {
-    let validOptions = false;
-    field.options.map((opt) => {
-      if (opt === value) {
-        validOptions = true;
-        return
-      }
-    })
-    return validOptions;
+  if (!validateOptions(value, field)) {
+    return false;
   }
+
   return true;
 }
 
@@ -112,7 +93,6 @@ function validateRequired(value) {
 }
 
 function validate(obj, schema) {
-
   const fields = schema.fields; // Array of elements of the schema
   let valid = true; // Will be valid until provem guilt
   fields.map((field) => {
@@ -122,7 +102,6 @@ function validate(obj, schema) {
       && field.required === true
       && obj.hasOwnProperty(name) === false
     ) {
-      console.log("REQUIRED FAIL")
       return false
     }
 
