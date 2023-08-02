@@ -58,7 +58,7 @@ app.get('/course', async (req, res) => {
 
 app.post('/course', async (req, res) => {
   const content = JSON.stringify(req.body)
-  await fm.Write(data.filepath['course'], content).then(() => {
+  await fm.WriteTo(data.filepath['course'], content).then(() => {
     res.status(200).send("Sucess")
   }).catch((error) => {
     res.status(500).send(error)

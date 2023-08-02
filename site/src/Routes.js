@@ -3,6 +3,7 @@ import Home from './pages/home/Home';
 import Admin from './pages/admin/Admin'
 import Description from './components/admin/description/Description'
 import Education from './components/admin/education/Education'
+import Course from './components/admin/course/Course'
 
 export const routes = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const routes = createBrowserRouter([
       {
         path: "education",
         element: <Education />
+      },
+      {
+        path: "course",
+        element: <Course />
       }
     ]
   }
