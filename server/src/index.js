@@ -31,6 +31,23 @@ app.post('/description', async (req, res) => {
   })
 })
 
+app.get('/education', async (req, res) => {
+  await fm.ReadFrom(data.filepath['education']).then((data) => {
+    res.json(data)
+  }).catch((error) => {
+    res.status(500).send(error)
+  })
+})
+
+app.post('/education', async (req, res) => {
+  const content = JSON.stringify(req.body);
+  await fm.WriteTo(data.filepath['education'], content).then(() => {
+    res.status(200).send("Success")
+  }).catch((error) => {
+    res.status(500).send(error)
+  })
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })

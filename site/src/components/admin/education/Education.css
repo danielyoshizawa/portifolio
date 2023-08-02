@@ -1,0 +1,17 @@
+.education {
+  font-size: 1rem;
+}
+
+.education li {
+  list-style: none;
+}
+
+.education-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.education-form input {
+  margin: 0.5rem;
+  min-height: 2rem;
+}
