@@ -8,6 +8,7 @@ function Admin() {
         <ul>
           <li><Link to={`description`}>Description</Link></li>
           <li><Link to={`education`}>Education</Link></li>
+          <li><Link to={`course`}>Course</Link></li>
         </ul>
       </div>
       <div className="admin-right">

@@ -9,13 +9,13 @@ import Footer from '../../components/footer/Footer'
 // Load data
 // TODO : Consume from the server
 import experienceData from '../../data/WorkExperience.data.json'
-import coursesData from '../../data/Courses.data.json'
 
 import {useState, useEffect } from 'react'
 
 function Home() {
   const [description, setDescription] = useState({title: "", description: ""});
   const [education, setEducation] = useState({education: [{}]});
+  const [course, setCourse] = useState({course: [{}]});
   useEffect(() => {
     fetch("http://localhost:3001/description")
       .then((response) => response.json())
@@ -26,7 +26,12 @@ function Home() {
         .then((response) => response.json())
         .then((json) => {
           setEducation(JSON.parse(json))
-        })
+      })
+      fetch("http://localhost:3001/course")
+        .then((response) => response.json())
+        .then((json) => {
+          setCourse(JSON.parse(json))
+      })
   }, [])
 
   return (
@@ -35,7 +40,7 @@ function Home() {
       <Hero />
       <Description description={description} />
       <WorkExperience experiences={experienceData.experiences} />
-      <Courses courses={coursesData.courses} />
+      <Courses courses={course.course} />
       <Education education={education.education} />
       <Footer />
     </>

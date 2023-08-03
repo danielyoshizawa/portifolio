@@ -1,0 +1,17 @@
+.course {
+  font-size: 1rem;
+}
+
+.course li {
+  list-style: none;
+}
+
+.course-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.course-form input {
+  margin: 0.5rem;
+  min-height: 2rem;
+}
