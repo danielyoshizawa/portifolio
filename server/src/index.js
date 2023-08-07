@@ -65,6 +65,23 @@ app.post('/course', async (req, res) => {
   })
 })
 
+app.get('/workExperience', async (req, res) => {
+  await fm.ReadFrom(data.filepath['workExperience']).then((data) => {
+    res.json(data)
+  }).catch((error) => {
+    res.status(500).send(error)
+  })
+})
+
+app.post('/workExperience', async (req, res) => {
+  const content = JSON.stringify(req.body)
+  await fm.WriteTo(data.filepath['workExperience'], content).then(() => {
+    res.status(200).send("Sucess")
+  }).catch((error) => {
+    res.status(500).send(error)
+  })
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
