@@ -1,0 +1,17 @@
+.work-experience {
+  font-size: 1rem;
+}
+
+.work-experience li {
+  list-style: none;
+}
+
+.work-experience-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.work-experience-form input {
+  margin: 0.5rem;
+  min-height: 2rem;
+}
