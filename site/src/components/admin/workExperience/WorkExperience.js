@@ -162,10 +162,14 @@ function WorkExperience() {
         <input
           type="text"
           value={newWorkExperience.techs}
-          onChange={(e) => setNewWorkExperience(
-            {...newWorkExperience,
-              techs: (e.target.value.split(';'))
-            })}
+          onChange={(e) => {
+              const techs = e.target.value.split(',')
+              setNewWorkExperience(
+              {...newWorkExperience,
+                techs: techs
+              })
+            }
+          }
         />
         <label>Fixed :</label>
         <input
