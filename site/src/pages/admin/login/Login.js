@@ -2,11 +2,13 @@ import './Login.css'
 import {useState, useEffect} from 'react'
 import ReactDOM from 'react-dom/client'
 import { setCookie, getCookie } from '../../../components/util/cookieManipulation'
+import {useNavigate} from 'react-router-dom'
 
 function Login() {
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
   const [status, setStatus] = useState()
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -28,6 +30,8 @@ function Login() {
         const token = await response.json()
         // TODO : Move cookie name to config file
         setCookie('token', token)
+
+        return navigate('/admin')
       }
       setStatus(response.status)
     })
