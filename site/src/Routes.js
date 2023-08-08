@@ -5,6 +5,8 @@ import Description from './components/admin/description/Description'
 import Education from './components/admin/education/Education'
 import Course from './components/admin/course/Course'
 import WorkExperience from './components/admin/workExperience/WorkExperience'
+// Will probably change that in the future
+import Login from './pages/admin/login/Login'
 
 export const routes = createBrowserRouter([
   {
@@ -32,5 +34,9 @@ export const routes = createBrowserRouter([
         element: <WorkExperience />
       }
     ]
+  },
+  {
+    path: "login",
+    element: <Login />
   }
 ])
