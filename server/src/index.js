@@ -120,6 +120,10 @@ app.post('/login', async (req, res) => {
   res.status(200).json(generateAccessToken(req.body.username))
 })
 
+app.get('/validateToken', authenticateToken, (req, res) => {
+  return res.sendStatus(200)
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
