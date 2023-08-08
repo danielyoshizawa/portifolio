@@ -1,0 +1,5 @@
+console.log(" - Token Generator - ")
+console.log("")
+const token = require('crypto').randomBytes(64).toString('hex')
+console.log("TOKEN_SECRET=" + token)
+console.log("")
