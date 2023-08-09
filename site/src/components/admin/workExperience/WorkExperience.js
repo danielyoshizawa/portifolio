@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import isEmpty from '../../util/IsEmpty'
 import validate from '../../util/validate'
 import workExperienceSchema from '../../../schemas/WorkExperienceSchema'
+import { getCookie } from '../../util/cookieManipulation'
 
 function WorkExperience() {
   const [workExperience, setWorkExperience] = useState()
@@ -47,18 +48,19 @@ function WorkExperience() {
         mode: 'cors',
         body: JSON.stringify(toSubmit),
         headers : {
-          'Content-Type' : 'application/json'
+          'Content-Type' : 'application/json',
+          'Authorization' : "Bearer " + getCookie('token')
         }
       }
     )
     .then((response) => {
       if (response.status == 200) {
         setStatus("Success")
+        setWorkExperience(toSubmit)
       } else {
         setStatus("Failure")
       }
     })
-    setWorkExperience(toSubmit)
   }, [toSubmit])
 
   const handleSubmit = (event) => {

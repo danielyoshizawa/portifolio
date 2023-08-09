@@ -1,6 +1,7 @@
 import './Description.css'
 import {useState, useEffect} from 'react'
 import ReactDOM from 'react-dom/client'
+import { getCookie } from '../../util/cookieManipulation'
 
 function Description() {
   const [title, setTitle] = useState("")
@@ -29,7 +30,8 @@ function Description() {
         mode: 'cors',
         body: JSON.stringify(resp),
         headers : {
-          'Content-Type' : 'application/json'
+          'Content-Type' : 'application/json',
+          'Authorization' : "Bearer " + getCookie('token')
         }
       }
     )
