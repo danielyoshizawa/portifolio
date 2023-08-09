@@ -51,14 +51,15 @@ function validateBoolean(value, field) {
 
 function validateArray(value, field) {
   let valid = true;
-  if (typeof Array.isArray(value) === false) {
+  if (Array.isArray(value) === false) {
     return false
   }
 
   value.map((item) => {
-    if (validateText(item, {...field, type : "text"}) == false) {
+    if (validateText(item, {...field, type : "text"}) === false) {
       valid = false;
     }
+    return item
   })
   return valid;
 }
@@ -131,6 +132,7 @@ function validate(obj, schema) {
         }
       }
     }
+    return field
   })
 
   return response;
