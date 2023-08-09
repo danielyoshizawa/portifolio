@@ -1,6 +1,5 @@
 import './Description.css'
 import {useState, useEffect} from 'react'
-import ReactDOM from 'react-dom/client'
 import { getCookie } from '../../util/cookieManipulation'
 
 function Description() {
@@ -36,7 +35,7 @@ function Description() {
       }
     )
     .then((response) => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         setStatus("Success")
       } else {
         setStatus("Failure")

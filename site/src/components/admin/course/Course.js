@@ -1,6 +1,5 @@
 import './Course.css'
 import {useState, useEffect} from 'react'
-import ReactDOM from 'react-dom/client'
 import isEmpty from '../../util/IsEmpty'
 import validate from '../../util/validate'
 import courseSchema from '../../../schemas/CourseSchema'
@@ -32,6 +31,7 @@ function Course() {
         valid = false
         error.push(resp.error)
       }
+      return item
     })
     setStatus(error)
     return valid
@@ -54,7 +54,7 @@ function Course() {
       }
     )
     .then((response) => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         setStatus("Success")
         setCourses(toSubmit)
       } else {
@@ -98,7 +98,7 @@ function Course() {
           courses.course.map((item, index) => {
               return (
                 <li key={index}>
-                  {index} | {item.name} - {item.link} - {item.validation} | {item.institution} - {item.date} - Fixed {item.fixed == "true" ? "yes" : "no"}
+                  {index} | {item.name} - {item.link} - {item.validation} | {item.institution} - {item.date} - Fixed {item.fixed === "true" ? "yes" : "no"}
                   <div onClick={() => onDelete(index)}>Delete</div>
                 </li>
               )
@@ -155,7 +155,7 @@ function Course() {
         <label>Fixed :</label>
         <input
           type="checkbox"
-          checked={newCourse.fixed == "true" ? 1 : 0}
+          checked={newCourse.fixed === "true" ? 1 : 0}
           onChange={(e) => setNewCourse(
             {...newCourse,
               fixed : (e.target.checked ? "true" : "false")

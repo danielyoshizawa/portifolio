@@ -1,6 +1,5 @@
 import './Education.css'
 import {useState, useEffect} from 'react'
-import ReactDOM from 'react-dom/client'
 import isEmpty from '../../util/IsEmpty'
 import validate from '../../util/validate'
 import educationSchema from '../../../schemas/EducationSchema'
@@ -32,6 +31,7 @@ function Education() {
         valid = false
         error.push(resp.error)
       }
+      return item
     })
     setStatus(error)
     return valid
@@ -54,7 +54,7 @@ function Education() {
       }
     )
     .then((response) => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         setStatus("Success")
         setEducations(toSubmit)
       } else {
@@ -97,7 +97,7 @@ function Education() {
           educations.education.map((item, index) => {
               return (
                 <li key={index}>
-                  {index} | {item.name} - {item.course} - {item.start} | {item.end} - {item.type} - Fixed {item.fixed == "true" ? "yes" : "no"}
+                  {index} | {item.name} - {item.course} - {item.start} | {item.end} - {item.type} - Fixed {item.fixed === "true" ? "yes" : "no"}
                   <div onClick={() => onDelete(index)}>Delete</div>
                 </li>
               )
@@ -154,7 +154,7 @@ function Education() {
         <label>Fixed :</label>
         <input
           type="checkbox"
-          checked={newEducation.fixed == "true" ? 1 : 0}
+          checked={newEducation.fixed === "true" ? 1 : 0}
           onChange={(e) => setNewEducation(
             {...newEducation,
               fixed : (e.target.checked ? "true" : "false")

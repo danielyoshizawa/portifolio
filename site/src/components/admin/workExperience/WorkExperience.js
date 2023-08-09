@@ -1,6 +1,5 @@
 import './WorkExperience.css'
 import {useState, useEffect} from 'react'
-import ReactDOM from 'react-dom/client'
 import isEmpty from '../../util/IsEmpty'
 import validate from '../../util/validate'
 import workExperienceSchema from '../../../schemas/WorkExperienceSchema'
@@ -32,6 +31,7 @@ function WorkExperience() {
         valid = false
         error.push(resp.error)
       }
+      return item
     })
     setStatus(error)
     return valid
@@ -54,7 +54,7 @@ function WorkExperience() {
       }
     )
     .then((response) => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         setStatus("Success")
         setWorkExperience(toSubmit)
       } else {
@@ -97,7 +97,7 @@ function WorkExperience() {
           workExperience.workExperience.map((item, index) => {
               return (
                 <li key={index}>
-                  {index} | {item.company} - {item.position} - {item.location} | {item.start} - {item.end} | {item.description} | {item.techs} | Fixed {item.fixed == "true" ? "yes" : "no"}
+                  {index} | {item.company} - {item.position} - {item.location} | {item.start} - {item.end} | {item.description} | {item.techs} | Fixed {item.fixed === "true" ? "yes" : "no"}
                   <div onClick={() => onDelete(index)}>Delete</div>
                 </li>
               )
@@ -176,7 +176,7 @@ function WorkExperience() {
         <label>Fixed :</label>
         <input
           type="checkbox"
-          checked={newWorkExperience.fixed == "true" ? 1 : 0}
+          checked={newWorkExperience.fixed === "true" ? 1 : 0}
           onChange={(e) => setNewWorkExperience(
             {...newWorkExperience,
               fixed : (e.target.checked ? "true" : "false")
