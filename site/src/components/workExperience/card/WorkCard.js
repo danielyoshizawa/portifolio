@@ -3,7 +3,7 @@ import WorkCardDescription from './WorkCardDescription'
 
 function WorkCard(props) {
   return (
-    <div className={"work-card " + (props.item.fixed == "true" || props.showMore ? "show" : "hide")} data-testid="work-card" key={`${props.index}-work-card`}>
+    <div className={"work-card " + (props.item.fixed === "true" || props.showMore ? "show" : "hide")} data-testid="work-card" key={`${props.index}-work-card`}>
       <div className="work-card-header">
         <div className="work-card-company-position">
           <h2 className="company-work-card item" data-testid="company-work-card" key={`${props.index}-company-work-card`}>{props.item.company}</h2>

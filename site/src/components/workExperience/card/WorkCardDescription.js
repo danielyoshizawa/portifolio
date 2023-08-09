@@ -1,3 +1,4 @@
+import './WorkCardDescription.css'
 import {useState} from 'react'
 
 function WorkCardDescription(props) {
@@ -14,7 +15,7 @@ function WorkCardDescription(props) {
       {readMore ? props.description : description}
       {
         useReadMore ?
-        <a className="description-work-card-read-more" data-testid="description-work-card-read-more" onClick={() => (setReadMore(!readMore))}>{readMore ? " - Read Less..." : " - Read More..."}</a>
+        <button className="description-work-card-read-more" data-testid="description-work-card-read-more" onClick={() => (setReadMore(!readMore))}>{readMore ? " - Read Less..." : " - Read More..."}</button>
         : ""
       }
     </p>
