@@ -1,7 +1,6 @@
 import './Login.css'
-import {useState, useEffect} from 'react'
-import ReactDOM from 'react-dom/client'
-import { setCookie, getCookie } from '../../../components/util/cookieManipulation'
+import {useState} from 'react'
+import { setCookie } from '../../../components/util/cookieManipulation'
 import {useNavigate} from 'react-router-dom'
 
 function Login() {
