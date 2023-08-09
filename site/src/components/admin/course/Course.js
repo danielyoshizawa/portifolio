@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client'
 import isEmpty from '../../util/IsEmpty'
 import validate from '../../util/validate'
 import courseSchema from '../../../schemas/CourseSchema'
+import { getCookie } from '../../util/cookieManipulation'
 
 function Course() {
   const [courses, setCourses] = useState()
@@ -47,18 +48,19 @@ function Course() {
         mode: 'cors',
         body: JSON.stringify(toSubmit),
         headers : {
-          'Content-Type' : 'application/json'
+          'Content-Type' : 'application/json',
+          'Authorization' : "Bearer " + getCookie('token')
         }
       }
     )
     .then((response) => {
       if (response.status == 200) {
         setStatus("Success")
+        setCourses(toSubmit)
       } else {
         setStatus("Failure")
       }
     })
-    setCourses(toSubmit)
   }, [toSubmit])
 
   const handleSubmit = (event) => {
