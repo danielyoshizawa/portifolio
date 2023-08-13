@@ -30,6 +30,9 @@ function Admin() {
       </div>
       <div className="admin-right">
         <Outlet />
+        <div className="admin-footer">
+          <p>Hacked by Donuts'n'Legends Co - Daniel Yoshizawa</p>
+        </div>
       </div>
     </div>
   )
