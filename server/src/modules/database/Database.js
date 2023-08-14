@@ -2,10 +2,14 @@ const neo4j = require('neo4j-driver')
 const dotenv = require('dotenv')
 
 class Database {
-
   constructor() {
     dotenv.config()
-    this.driver = neo4j.driver(process.env.NEO4J_URI, neo4j.auth.basic(process.env.NEO4J_DB_NAME, process.env.NEO4J_PASSWORD))
+    this.driver = neo4j.driver(
+      process.env.NEO4J_URI,
+      neo4j.auth.basic(
+        process.env.NEO4J_DB_NAME,
+        process.env.NEO4J_PASSWORD)
+    )
   }
 
   async destructor() {

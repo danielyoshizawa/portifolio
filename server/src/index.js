@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 const database = require('./modules/database/Database')
 const db = new database.Database();
+const description = require('./modules/database/model/description/Description')
 
 dotenv.config()
 
@@ -24,42 +25,36 @@ function authenticateToken(req, res, next) {
   if (token == null) return res.sendStatus(401)
 
   jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-    console.log(err)
-
     if (err) return res.sendStatus(403)
-
     req.user = user
 
     next()
   })
 }
 
+// Testing endpoint, remove in the future
 app.get('/', async (req, res) => {
-  try {
-    const records = await db.run('MATCH (a:Person {name: $name, title: "Test2"}) RETURN a', { name : 'Alice2' })
-    const singleRecord = records[0]
-    const node = singleRecord.get(0)
-    res.send(node.properties.name)
-  } catch(err) {
-    res.send(err)
-  }
+  res.status(200).send("Cool Dude!")
 })
 
 app.get('/description', async (req, res) => {
-  await fm.ReadFrom(data.filepath['description']).then((data) => {
-    res.json(data)
-  }).catch((error) => {
+  try {
+    const records = await description.Get(db)
+    const singleRecord = records[0]
+    const node = singleRecord.get(0)
+    res.json(JSON.stringify(node.properties))
+  } catch(error) {
     res.status(500).send(error)
-  })
+  }
 })
 
 app.post('/description', authenticateToken, async (req, res) => {
-  const content = JSON.stringify(req.body);
-  await fm.WriteTo(data.filepath['description'], content).then(() => {
+  try {
+    const records = await description.Update(db, req.body)
     res.status(200).send("Success")
-  }).catch((error) => {
+  } catch (error) {
     res.status(500).send(error)
-  })
+  }
 })
 
 app.get('/education', async (req, res) => {
