@@ -7,6 +7,8 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
+const database = require('./modules/database/Database')
+const db = new database.Database();
 
 dotenv.config()
 
@@ -32,8 +34,15 @@ function authenticateToken(req, res, next) {
   })
 }
 
-app.get('/', (req, res) => {
-  res.send("Invalid")
+app.get('/', async (req, res) => {
+  try {
+    const records = await db.run('MATCH (a:Person {name: $name, title: "Test2"}) RETURN a', { name : 'Alice2' })
+    const singleRecord = records[0]
+    const node = singleRecord.get(0)
+    res.send(node.properties.name)
+  } catch(err) {
+    res.send(err)
+  }
 })
 
 app.get('/description', async (req, res) => {
@@ -126,4 +135,12 @@ app.get('/validateToken', authenticateToken, (req, res) => {
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
+})
+
+process.on('SIGTERM', () => {
+  debug('SIGTERM signal received: closing HTTP server')
+  app.close(async () => {
+    await database.destructor()
+    debug('HTTP server closed')
+  })
 })
