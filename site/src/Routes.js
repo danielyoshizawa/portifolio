@@ -3,6 +3,8 @@ import Home from './pages/home/Home';
 import Admin from './pages/admin/Admin'
 import Description from './components/admin/description/Description'
 import Education from './components/admin/education/Education'
+import EducationEdit from './components/admin/education/EducationEdit'
+import EducationDelete from './components/admin/education/EducationDelete'
 import Course from './components/admin/course/Course'
 import WorkExperience from './components/admin/workExperience/WorkExperience'
 // Will probably change that in the future
@@ -23,7 +25,19 @@ export const routes = createBrowserRouter([
       },
       {
         path: "education",
-        element: <Education />
+        element: <Education />,
+      },
+      {
+        path: "education/:id/edit",
+        element: <EducationEdit action="edit"/>
+      },
+      {
+        path: "education/:id/delete",
+        element: <EducationDelete />
+      },
+      {
+        path: "education/new",
+        element: <EducationEdit action="new" />
       },
       {
         path: "course",
