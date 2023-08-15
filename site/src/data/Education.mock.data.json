@@ -5,28 +5,28 @@
       "start" : "04/1546",
       "end"   : "11/1782",
       "type"  : "Test 1",
-      "fixed" : "true"
+      "fixed" : true
     },
     {
       "name"  : "Test 2",
       "start" : "04/1546",
       "end"   : "11/1782",
       "type"  : "Test 2",
-      "fixed" : "false"
+      "fixed" : false
     },
     {
       "name"  : "Test 3",
       "start" : "04/1546",
       "end"   : "11/1782",
       "type"  : "Test 3",
-      "fixed" : "true"
+      "fixed" : true
     },
     {
       "name"  : "Test 4",
       "start" : "04/1546",
       "end"   : "11/1782",
       "type"  : "Test 4",
-      "fixed" : "true"
+      "fixed" : true
     }
   ]
 }

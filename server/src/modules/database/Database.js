@@ -8,7 +8,9 @@ class Database {
       process.env.NEO4J_URI,
       neo4j.auth.basic(
         process.env.NEO4J_DB_NAME,
-        process.env.NEO4J_PASSWORD)
+        process.env.NEO4J_PASSWORD
+      ),
+      { disableLosslessIntegers: true }
     )
   }
 
