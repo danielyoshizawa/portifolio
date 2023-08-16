@@ -8,9 +8,11 @@ const cors = require('cors')
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 const database = require('./modules/database/Database')
-const db = new database.Database();
+const db = new database.Database()
 const description = require('./modules/database/model/description/Description')
 const education = require('./modules/database/model/education/Education')
+const routes = require('./modules/routes/Routes')
+const router = new routes.Routes(app, db)
 
 dotenv.config()
 
@@ -18,6 +20,7 @@ app.use(bodyParser.urlencoded({extended : false}))
 app.use(bodyParser.json())
 app.use(cors())
 
+// TODO : Remove when all routes are moved to the proper places
 // Middleman for authorization
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization']
@@ -32,6 +35,8 @@ function authenticateToken(req, res, next) {
     next()
   })
 }
+
+router.initialize()
 
 // Testing endpoint, remove in the future
 app.get('/', async (req, res) => {
@@ -123,23 +128,6 @@ app.post('/education/:id/delete', authenticateToken, async (req, res) => {
   }
 })
 
-app.get('/course', async (req, res) => {
-  await fm.ReadFrom(data.filepath['course']).then((data) => {
-    res.json(data)
-  }).catch((error) => {
-    res.status(500).send(error)
-  })
-})
-
-app.post('/course', authenticateToken, async (req, res) => {
-  const content = JSON.stringify(req.body)
-  await fm.WriteTo(data.filepath['course'], content).then(() => {
-    res.status(200).send("Sucess")
-  }).catch((error) => {
-    res.status(500).send(error)
-  })
-})
-
 app.get('/workExperience', async (req, res) => {
   await fm.ReadFrom(data.filepath['workExperience']).then((data) => {
     res.json(data)
@@ -184,7 +172,7 @@ app.listen(port, () => {
 process.on('SIGTERM', () => {
   debug('SIGTERM signal received: closing HTTP server')
   app.close(async () => {
-    await database.destructor()
+    await db.destructor()
     debug('HTTP server closed')
   })
 })
