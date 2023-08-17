@@ -4,6 +4,7 @@ import isEmpty from '../../util/IsEmpty'
 import validate from '../../util/validate'
 import courseSchema from '../../../schemas/CourseSchema'
 import { getCookie } from '../../util/cookieManipulation'
+import CourseCard from './card/CourseCard'
 
 function Course() {
   const [courses, setCourses] = useState()
@@ -98,8 +99,7 @@ function Course() {
           courses.course.map((item, index) => {
               return (
                 <li key={index}>
-                  {index} | {item.name} - {item.link} - {item.validation} | {item.institution} - {item.date} - Fixed {item.fixed === "true" ? "yes" : "no"}
-                  <div onClick={() => onDelete(index)}>Delete</div>
+                  <CourseCard index={index} item={item} />
                 </li>
               )
             }
