@@ -1,6 +1,5 @@
 const express = require('express')
 const app = express()
-const port = 3001
 const fm = require('./modules/util/FileManager')
 const data = require('./config/data')
 const bodyParser = require('body-parser')
@@ -18,7 +17,11 @@ dotenv.config()
 
 app.use(bodyParser.urlencoded({extended : false}))
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors({
+  origin : [process.env.LOCAL_NETWORK_ADDRESS, process.env.NETWORK_ADDRESS],
+  methods : "GET,POST",
+  optionsSucessStatus : 204
+}))
 
 // TODO : Remove when all routes are moved to the proper places
 // Middleman for authorization
@@ -165,8 +168,8 @@ app.get('/validateToken', authenticateToken, (req, res) => {
   return res.sendStatus(200)
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+app.listen(process.env.NETWORK_PORT, process.env.NETWORK_IP, () => {
+  console.log(`Example app listening on port ${process.env.NETWORK_PORT}`)
 })
 
 process.on('SIGTERM', () => {
