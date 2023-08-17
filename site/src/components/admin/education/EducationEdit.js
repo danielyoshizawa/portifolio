@@ -18,6 +18,7 @@ function EducationEdit(props) {
     fixed: false
   })
   const [status, setStatus] = useState("")
+  const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   // Load resource from database
   useEffect(() => {
@@ -26,7 +27,7 @@ function EducationEdit(props) {
       return
     }
 
-    const uri = "http://localhost:3001/education/" + params.id
+    const uri = serverAddress + "/education/" + params.id
     fetch(uri)
       .then((response) => response.json())
       .then((json) => {
@@ -56,7 +57,7 @@ function EducationEdit(props) {
 
     if (!validateItem()) return
 
-    let uri = "http://localhost:3001/education/"
+    let uri = serverAddress + "/education/"
     if (props.action === "edit") {
       uri +=  params.id
     }

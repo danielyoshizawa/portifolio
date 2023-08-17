@@ -10,9 +10,10 @@ function WorkExperience() {
   const [newWorkExperience, setNewWorkExperience] = useState("")
   const [status, setStatus] = useState("")
   const [toSubmit, setToSubmit] = useState("")
+  const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   useEffect(() => {
-    fetch("http://localhost:3001/workExperience")
+    fetch(serverAddress + "/workExperience")
       .then((response) => response.json())
       .then((json) => {
         const resp = JSON.parse(json)
@@ -42,7 +43,7 @@ function WorkExperience() {
 
     if (!validateAll(toSubmit.workExperience)) return
 
-    fetch("http://localhost:3001/workExperience",
+    fetch(serverAddress + "/workExperience",
       {
         method: 'POST',
         mode: 'cors',
