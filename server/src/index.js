@@ -18,9 +18,9 @@ dotenv.config()
 app.use(bodyParser.urlencoded({extended : false}))
 app.use(bodyParser.json())
 app.use(cors({
-  origin : [process.env.LOCAL_NETWORK_ADDRESS, process.env.NETWORK_ADDRESS],
+  origin : [process.env.CORS_CLIENT_ADDRESS, process.env.CORS_CLIENT_LOCAL_ADDRESS],
   methods : "GET,POST",
-  optionsSucessStatus : 204
+  optionsSucessStatus : 200
 }))
 
 // TODO : Remove when all routes are moved to the proper places
@@ -169,7 +169,7 @@ app.get('/validateToken', authenticateToken, (req, res) => {
 })
 
 app.listen(process.env.NETWORK_PORT, process.env.NETWORK_IP, () => {
-  console.log(`Example app listening on port ${process.env.NETWORK_PORT}`)
+  console.log(`Server running on http://${process.env.NETWORK_IP}:${process.env.NETWORK_PORT}`)
 })
 
 process.on('SIGTERM', () => {
