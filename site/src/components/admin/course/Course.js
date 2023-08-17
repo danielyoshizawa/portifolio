@@ -82,15 +82,6 @@ function Course() {
     setToSubmit(tempCourses)
   }
 
-  const onDelete = (index) => {
-    const tempCourses =
-      courses.course.slice(0, index)
-        .concat(
-          courses.course.slice(index + 1, courses.course.length)
-      )
-    setCourses({ course : [...tempCourses ]} )
-  }
-
   // TODO : Add the right fields to the form
   return (
     <div className="course">

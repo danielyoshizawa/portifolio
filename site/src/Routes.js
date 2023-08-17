@@ -6,6 +6,7 @@ import Education from './components/admin/education/Education'
 import EducationEdit from './components/admin/education/EducationEdit'
 import EducationDelete from './components/admin/education/EducationDelete'
 import Course from './components/admin/course/Course'
+import CourseDelete from './components/admin/course/CourseDelete'
 import WorkExperience from './components/admin/workExperience/WorkExperience'
 // Will probably change that in the future
 import Login from './pages/admin/login/Login'
@@ -42,6 +43,10 @@ export const routes = createBrowserRouter([
       {
         path: "course",
         element: <Course />
+      },
+      {
+        path: "course/:id/delete",
+        element: <CourseDelete />
       },
       {
         path: "workExperience",
