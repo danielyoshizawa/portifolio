@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 const course = require('./course/Course')
+const tags   = require('./tags/Tags')
 
 dotenv.config()
 
@@ -24,10 +25,12 @@ class Routes {
     this.app = app
     this.database = database
     this.course = new course.Course(this.app, this.database, authenticateToken)
+    this.tags = new tags.Tags(this.app, this.database, authenticateToken)
   }
 
   initialize() {
     this.course.initialize()
+    this.tags.initialize()
   }
 }
 
