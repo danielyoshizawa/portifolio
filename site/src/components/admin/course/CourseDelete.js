@@ -7,11 +7,12 @@ function CourseDelete() {
   const navigate = useNavigate()
   const params = useParams()
   const [status, setStatus] = useState("")
+  const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   const handleDelete = (event) => {
     event.preventDefault()
 
-    const uri = "http://localhost:3001/course/" + params.id + "/delete"
+    const uri = serverAddress + "/course/" + params.id + "/delete"
     fetch(uri,
       {
         method: 'POST',

@@ -6,9 +6,10 @@ function Description() {
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
   const [status, setStatus] = useState("")
+  const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   useEffect(() => {
-    fetch("http://localhost:3001/description")
+    fetch(serverAddress + "/description")
       .then((response) => response.json())
       .then((json) => {
         const resp = JSON.parse(json)
@@ -23,7 +24,7 @@ function Description() {
       title       : title,
       description : description
     }
-    fetch("http://localhost:3001/description",
+    fetch(serverAddress + "/description",
       {
         method: 'POST',
         mode: 'cors',

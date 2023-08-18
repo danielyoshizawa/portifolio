@@ -7,11 +7,12 @@ function EducationDelete() {
   const navigate = useNavigate()
   const params = useParams()
   const [status, setStatus] = useState("")
+  const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   const handleDelete = (event) => {
     event.preventDefault()
 
-    const uri = "http://localhost:3001/education/" + params.id + "/delete"
+    const uri = serverAddress + "/education/" + params.id + "/delete"
     fetch(uri,
       {
         method: 'POST',

@@ -8,6 +8,7 @@ function Login() {
   const [password, setPassword] = useState()
   const [status, setStatus] = useState()
   const navigate = useNavigate()
+  const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -15,7 +16,7 @@ function Login() {
       username: username,
       password: password
     }
-    fetch("http://localhost:3001/login",
+    fetch(serverAddress + "/login",
       {
         method: 'POST',
         mode: 'cors',

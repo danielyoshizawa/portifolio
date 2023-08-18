@@ -1,8 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import Login from './Login';
+import {BrowserRouter} from 'react-router-dom'
 
 test('checks if the description has the correct items', () => {
-  render(<Login />)
+  render(
+    <BrowserRouter>
+      <Login />
+    </BrowserRouter>
+  )
 
   const username = screen.getByTestId("login-username")
   const password = screen.getByTestId("login-password")

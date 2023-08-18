@@ -1,5 +1,5 @@
 import './Course.css'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import isEmpty from '../../util/IsEmpty'
 import { getCookie } from '../../util/cookieManipulation'
@@ -9,15 +9,16 @@ import courseSchema from '../../../schemas/CourseSchema'
 function CourseEdit(props) {
   let params = useParams()
   const navigate = useNavigate()
-  const [item, setItem] = useState({
-    name        : "",
-    link        : "",
-    validation  : "",
-    institution : "",
-    date        : "",
-    fixed       : false
-  })
+  // References
+  const nameRef = useRef()
+  const linkRef = useRef()
+  const validationRef = useRef()
+  const institutionRef = useRef()
+  const dateRef = useRef()
+  const fixedRef = useRef()
+
   const [status, setStatus] = useState("")
+  const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   // Load resource from database
   useEffect(() => {
@@ -26,7 +27,7 @@ function CourseEdit(props) {
       return
     }
 
-    const uri = "http://localhost:3001/course/" + params.id
+    const uri = serverAddress + "/course/" + params.id
     fetch(uri)
       .then((response) => response.json())
       .then((json) => {
@@ -36,12 +37,17 @@ function CourseEdit(props) {
         }
         const resp = JSON.parse(json)
         if (!isEmpty(resp)) {
-          setItem(resp)
+          nameRef.current.value        = resp.name
+          linkRef.current.value        = resp.link
+          validationRef.current.value  = resp.validation
+          institutionRef.current.value = resp.institution
+          dateRef.current.value        = resp.date
+          fixedRef.current.checked     = resp.fixed
         }
       })
-  })
+  }, [props.action, params.id, serverAddress])
 
-  const validateItem = () => {
+  const validateItem = (item) => {
     let valid = true;
     const resp = validate(item, courseSchema)
     if(!resp.valid) {
@@ -54,9 +60,18 @@ function CourseEdit(props) {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    if (!validateItem()) return
+    const item = {
+      name        : nameRef.current.value,
+      link        : linkRef.current.value,
+      validation  : validationRef.current.value,
+      institution : institutionRef.current.value,
+      date        : dateRef.current.value,
+      fixed       : fixedRef.current.checked
+    }
 
-    let uri = "http://localhost:3001/course/"
+    if (!validateItem(item)) return
+
+    let uri = serverAddress + "/course/"
     if (props.action === "edit") {
       uri +=  params.id
     }
@@ -87,56 +102,32 @@ function CourseEdit(props) {
         <label>Course Name :</label>
         <input
           type="text"
-          value={item.name}
-          onChange={(e) => setItem(
-            {...item,
-              name : e.target.value
-            })}
+          ref={nameRef}
         />
         <label>Certificate Link :</label>
         <input
           type="text"
-          value={item.link}
-          onChange={(e) => setItem(
-            {...item,
-              link : e.target.value
-            })}
+          ref={linkRef}
         />
         <label>Certificate Validation Code :</label>
         <input
           type="text"
-          value={item.validation}
-          onChange={(e) => setItem(
-            {...item,
-              validation : e.target.value
-            })}
+          ref={validationRef}
         />
         <label>Institution :</label>
         <input
           type="text"
-          value={item.institution}
-          onChange={(e) => setItem(
-            {...item,
-              institution : e.target.value
-            })}
+          ref={institutionRef}
         />
         <label>Year :</label>
         <input
           type="text"
-          value={item.date}
-          onChange={(e) => setItem(
-            {...item,
-              date : e.target.value
-            })}
+          ref={dateRef}
         />
         <label>Fixed :</label>
         <input
           type="checkbox"
-          checked={item.fixed ? true : false}
-          onChange={(e) => setItem(
-            {...item,
-              fixed : e.target.checked
-            })}
+          ref={fixedRef}
         />
         <input type="submit" value="Save Changes"/>
         <input type="button" value="Cancel" onClick={() => navigate("/admin/course/")} />

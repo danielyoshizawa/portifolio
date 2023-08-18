@@ -5,8 +5,10 @@ import { getCookie } from '../../components/util/cookieManipulation'
 
 function Admin() {
   const navigate = useNavigate()
+  const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
+
   useEffect(() => {
-    fetch("http://localhost:3001/validateToken",
+    fetch(serverAddress + "/validateToken",
       {
         method: 'GET',
         mode: 'cors',

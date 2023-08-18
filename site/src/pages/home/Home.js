@@ -13,30 +13,31 @@ function Home() {
   const [education, setEducation] = useState({education: [{}]});
   const [course, setCourse] = useState({course: [{}]});
   const [workExperience, setWorkExperience] = useState({workExperience: [{ description: "", techs : []}]});
+  const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
+
   useEffect(() => {
-    fetch("http://localhost:3001/description")
+    fetch(serverAddress + "/description")
       .then((response) => response.json())
       .then((json) => {
         setDescription(JSON.parse(json))
       })
-      fetch("http://localhost:3001/education")
+      fetch(serverAddress + "/education")
         .then((response) => response.json())
         .then((json) => {
           setEducation(JSON.parse(json))
       })
-      fetch("http://localhost:3001/course")
+      fetch(serverAddress + "/course")
         .then((response) => response.json())
         .then((json) => {
           setCourse(JSON.parse(json))
       })
-      fetch("http://localhost:3001/workExperience")
+      fetch(serverAddress + "/workExperience")
         .then((response) => response.json())
         .then((json) => {
           setWorkExperience(JSON.parse(json))
       })
   }, [])
-console.log("HOME")
-console.log(JSON.stringify(workExperience))
+
   return (
     <>
       <Navbar />

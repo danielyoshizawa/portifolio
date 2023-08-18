@@ -7,9 +7,10 @@ import {useNavigate} from 'react-router-dom'
 function Course() {
   const [courses, setCourses] = useState()
   const navigate = useNavigate()
+  const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   useEffect(() => {
-    fetch("http://localhost:3001/course")
+    fetch(serverAddress + "/course")
       .then((response) => response.json())
       .then((json) => {
         const resp = JSON.parse(json)
