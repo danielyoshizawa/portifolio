@@ -5,7 +5,8 @@ async function Create(database, parameters) {
       course:$course,
       type:$type,
       start:$start,
-      end:$end
+      end:$end,
+      fixed:$fixed
     }) RETURN a
     `,
     parameters
