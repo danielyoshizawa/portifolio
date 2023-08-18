@@ -1,0 +1,24 @@
+.tags {
+  font-size: 1rem;
+}
+
+.tags li {
+  list-style: none;
+}
+
+.tags-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.tags-form input {
+  margin: 0.5rem;
+  min-height: 2rem;
+}
+
+.admin-tags-form-select {
+  background-color: inherit;
+  font-size: 1.2rem;
+  margin: 0.5rem;
+  min-height: 2rem;
+}

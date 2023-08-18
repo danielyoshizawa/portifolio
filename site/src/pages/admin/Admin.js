@@ -28,6 +28,7 @@ function Admin() {
           <li><Link to={`education`}>Education</Link></li>
           <li><Link to={`course`}>Course</Link></li>
           <li><Link to={`workExperience`}>Work Experience</Link></li>
+          <li><Link to={`tags`}>Tags</Link></li>
         </ul>
       </div>
       <div className="admin-right">

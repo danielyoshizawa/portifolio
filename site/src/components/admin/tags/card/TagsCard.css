@@ -1,0 +1,36 @@
+.admin-tags-card {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 1.2rem;
+  font-weight: bolder;
+  min-height: 4rem;
+  padding: 1rem;
+  margin: 0;
+  background-color: #0B3C5D;
+  color: #D9B310;
+  border: 1px solid #D9B310;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.admin-tags-card-description {
+  display: flex;
+  margin-right: 2rem;
+}
+
+.admin-tags-card-description-section {
+  margin-right: 1rem;
+}
+
+.admin-tags-card-action {
+  display: flex;
+  flex-direction: row;
+}
+
+.admin-tags-card-action-item {
+  min-width: 4rem;
+  margin-right: 0.5rem;
+  background-color: #1D2731;
+  border: 1px solid #D9B310;
+  color: white;
+}
