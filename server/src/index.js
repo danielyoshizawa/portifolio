@@ -131,23 +131,6 @@ app.post('/education/:id/delete', authenticateToken, async (req, res) => {
   }
 })
 
-app.get('/workExperience', async (req, res) => {
-  await fm.ReadFrom(data.filepath['workExperience']).then((data) => {
-    res.json(data)
-  }).catch((error) => {
-    res.status(500).send(error)
-  })
-})
-
-app.post('/workExperience', authenticateToken, async (req, res) => {
-  const content = JSON.stringify(req.body)
-  await fm.WriteTo(data.filepath['workExperience'], content).then(() => {
-    res.status(200).send("Sucess")
-  }).catch((error) => {
-    res.status(500).send(error)
-  })
-})
-
 function generateAccessToken(username) {
   // TODO : Add expiresIn
   return jwt.sign(username, process.env.TOKEN_SECRET)
