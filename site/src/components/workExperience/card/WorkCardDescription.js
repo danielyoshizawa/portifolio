@@ -3,7 +3,7 @@ import {useState} from 'react'
 
 function WorkCardDescription(props) {
   const [readMore, setReadMore] = useState(false);
-  let description = props.description;
+  let description = props.description ? props.description : "";
   const useReadMore = description.length > props.maxLength;
 
   if (useReadMore) {

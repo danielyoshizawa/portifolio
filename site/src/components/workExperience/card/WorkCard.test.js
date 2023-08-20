@@ -8,16 +8,16 @@ const MOCK_EXPERIENCE = {
   position : "Full Stack Senior Software Engineer | CEO",
   location : "Ourinhos, SP, BR",
   description : "My own awesome company! We create solutions for the future, not sure which future, but we do.",
-  techs : [
-    "React",
-    "React Native",
-    "JavaScript",
-    "HTML",
-    "Neo4j",
-    "ApolloQL",
-    "GraphQL",
-    "AWS",
-    "Tech Solution"
+  tags : [
+    { properties : {name : "React"}},
+    { properties : {name : "React Native"}},
+    { properties : {name : "JavaScript"}},
+    { properties : {name : "HTML"}},
+    { properties : {name : "Neo4j"}},
+    { properties : {name : "ApolloQL"}},
+    { properties : {name : "GraphQL"}},
+    { properties : {name : "AWS"}},
+    { properties : {name : "Tech Solution"}}
   ]
 }
 
@@ -29,14 +29,14 @@ test('checks if the work card has the correct items', () => {
   const position = screen.getByTestId("position-work-card")
   const location = screen.getByTestId("location-work-card")
   const description = screen.getByTestId("description-work-card")
-  const techs = screen.getByTestId("techs-work-card")
+  const tags = screen.getByTestId("tags-work-card")
 
   expect(company).toBeInTheDocument()
   expect(startEnd).toBeInTheDocument()
   expect(position).toBeInTheDocument()
   expect(location).toBeInTheDocument()
   expect(description).toBeInTheDocument()
-  expect(techs).toBeInTheDocument()
+  expect(tags).toBeInTheDocument()
 
   expect(company.textContent).toMatch(MOCK_EXPERIENCE.company)
   expect(startEnd.textContent).toMatch(new RegExp(`${MOCK_EXPERIENCE.start} [-|\||.] ${MOCK_EXPERIENCE.end}`, 'i'))
@@ -44,7 +44,9 @@ test('checks if the work card has the correct items', () => {
   expect(location.textContent).toMatch(MOCK_EXPERIENCE.location)
   expect(description.textContent).toMatch(MOCK_EXPERIENCE.description)
 
-  techs.childNodes.forEach((item, index) => {
-    expect(MOCK_EXPERIENCE.techs).toContain(item.textContent)
+  const tagsNames = MOCK_EXPERIENCE.tags.map((item) => item.properties.name)
+
+  tags.childNodes.forEach((item, index) => {
+    expect(tagsNames).toContain(item.textContent)
   })
 });
