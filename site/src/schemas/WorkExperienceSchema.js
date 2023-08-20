@@ -31,7 +31,7 @@ const WorkExperienceSchema = {
       required   : true
     },
     {
-      name       : "techs",
+      name       : "tags",
       type       : "array",
       required   : true
     },

@@ -29,6 +29,10 @@ async function Create(database, parameters) {
 
 async function Update(database, id, parameters) {
   let query = `
+    OPTIONAL MATCH (w:WorkExperience)-[r:TAGS]-(b:Tag)
+      WHERE ID(w) = $id
+      DELETE r
+      WITH w
     MATCH (a:WorkExperience)
       WHERE ID(a) = $id
       SET a.company = $company

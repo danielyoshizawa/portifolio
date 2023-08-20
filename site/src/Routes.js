@@ -9,6 +9,8 @@ import Course from './components/admin/course/Course'
 import CourseDelete from './components/admin/course/CourseDelete'
 import CourseEdit from './components/admin/course/CourseEdit'
 import WorkExperience from './components/admin/workExperience/WorkExperience'
+import WorkExperienceEdit from './components/admin/workExperience/WorkExperienceEdit'
+import WorkExperienceDelete from './components/admin/workExperience/WorkExperienceDelete'
 import Tags from './components/admin/tags/Tags'
 import TagsDelete from './components/admin/tags/TagsDelete'
 import TagsEdit from './components/admin/tags/TagsEdit'
@@ -63,6 +65,18 @@ export const routes = createBrowserRouter([
       {
         path: "workExperience",
         element: <WorkExperience />
+      },
+      {
+        path: "workExperience/:id/edit",
+        element: <WorkExperienceEdit action="edit"/>
+      },
+      {
+        path: "workExperience/:id/delete",
+        element: <WorkExperienceDelete />
+      },
+      {
+        path: "workExperience/new",
+        element: <WorkExperienceEdit action="new" />
       },
       {
         path: "tags",
