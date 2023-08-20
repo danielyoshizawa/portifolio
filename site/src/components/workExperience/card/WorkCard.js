@@ -3,7 +3,7 @@ import WorkCardDescription from './WorkCardDescription'
 
 function WorkCard(props) {
   return (
-    <div className={"work-card " + (props.item.fixed === "true" || props.showMore ? "show" : "hide")} data-testid="work-card" key={`${props.index}-work-card`}>
+    <div className={"work-card " + (props.item.fixed || props.showMore ? "show" : "hide")} data-testid="work-card" key={`${props.index}-work-card`}>
       <div className="work-card-header">
         <div className="work-card-company-position">
           <h2 className="company-work-card item" data-testid="company-work-card" key={`${props.index}-company-work-card`}>{props.item.company}</h2>
@@ -16,10 +16,16 @@ function WorkCard(props) {
       </div>
       <div>
         <WorkCardDescription index={props.index} description={props.item.description} maxLength="100" />
-        <ul className="techs-work-card" data-testid="techs-work-card" key={`${props.index}-techs-work-card`}>
-          {props.item.techs.map((item, index) => (
-            <li key={`${index}-${props.index}-tech-item-work-card`}>{item}</li>
-          ))}
+
+        <ul className="tags-work-card" data-testid="tags-work-card" key={`${props.index}-tags-work-card`}>
+          {props.item.tags && props.item.tags.map((item, index) =>
+            {
+              if (!item || item.properties.name === "") return
+              return (
+                <li key={`${index}-${props.index}-tags-item-work-card`}>{item ? item.properties.name : ""}</li>
+              )
+          }
+        )}
         </ul>
       </div>
     </div>

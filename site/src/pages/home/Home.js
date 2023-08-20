@@ -12,7 +12,7 @@ function Home() {
   const [description, setDescription] = useState({title: "", description: ""});
   const [education, setEducation] = useState({education: [{}]});
   const [course, setCourse] = useState({course: [{}]});
-  const [workExperience, setWorkExperience] = useState({workExperience: [{ description: "", techs : []}]});
+  const [workExperience, setWorkExperience] = useState({workExperience: [{ description: "", tags : []}]});
   const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   useEffect(() => {
