@@ -137,10 +137,7 @@ function generateAccessToken(username) {
 }
 
 app.post('/login', async (req, res) => {
-  // TODO : Move to a proper place
-  const username = "test"
-  const password = "test"
-  if (req.body.username !== username || req.body.password !== password) {
+  if (req.body.username !== process.env.ADMIN_USERNAME || req.body.password !== process.env.ADMIN_PASSWORD) {
     return res.status(401).send("Invalid Username or Password")
   }
 
