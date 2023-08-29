@@ -8,7 +8,6 @@ const jwt = require('jsonwebtoken')
 const dotenv = require('dotenv')
 const database = require('./modules/database/Database')
 const db = new database.Database()
-const description = require('./modules/database/model/description/Description')
 const routes = require('./modules/routes/Routes')
 const router = new routes.Routes(app, db)
 
@@ -43,26 +42,6 @@ router.initialize()
 // Testing endpoint, remove in the future
 app.get('/', async (req, res) => {
   res.status(200).send("Cool Dude!")
-})
-
-app.get('/description', async (req, res) => {
-  try {
-    const records = await description.Get(db)
-    const singleRecord = records[0]
-    const node = singleRecord.get(0)
-    res.json(JSON.stringify(node.properties))
-  } catch(error) {
-    res.status(500).send(error)
-  }
-})
-
-app.post('/description', authenticateToken, async (req, res) => {
-  try {
-    const records = await description.Update(db, req.body)
-    res.status(200).send("Success")
-  } catch (error) {
-    res.status(500).send(error)
-  }
 })
 
 function generateAccessToken(username) {

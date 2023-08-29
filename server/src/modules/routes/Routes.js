@@ -4,6 +4,7 @@ const course = require('./course/Course')
 const tags   = require('./tags/Tags')
 const workExperience = require('./workExperience/WorkExperience')
 const education = require('./education/Education')
+const description = require('./description/Description')
 
 dotenv.config()
 
@@ -30,6 +31,7 @@ class Routes {
     this.tags = new tags.Tags(this.app, this.database, authenticateToken)
     this.workExperience = new workExperience.WorkExperience(this.app, this.database, authenticateToken)
     this.education = new education.Education(this.app, this.database, authenticateToken)
+    this.description = new description.Description(this.app, this.database, authenticateToken)
   }
 
   initialize() {
@@ -37,6 +39,7 @@ class Routes {
     this.tags.initialize()
     this.workExperience.initialize()
     this.education.initialize()
+    this.description.initialize()
   }
 }
 
