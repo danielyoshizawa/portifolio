@@ -1,33 +1,41 @@
+const timezone = process.env.TIMEZONE
+
 async function Create(database, parameters) {
   return await database.run(
     `CREATE (a:Education {
-      name:$name,
-      course:$course,
-      type:$type,
-      start:$start,
-      end:$end,
-      fixed:$fixed
+      name    : $name,
+      course  : $course,
+      type    : $type,
+      start   : $start,
+      end     : $end,
+      fixed   : $fixed,
+      created : datetime({timezone: $timezone})
     }) RETURN a
     `,
-    parameters
+    {
+      ...parameters,
+      timezone
+    }
   )
 }
 
 async function Update(database, id, parameters) {
   return await database.run(
     `MATCH (a:Education)
-      WHERE ID(a) = $id
-      SET a.name = $name
-      SET a.course = $course
-      SET a.type = $type
-      SET a.start = $start
-      SET a.end = $end
-      SET a.fixed = $fixed
+      WHERE ID(a)   = $id
+      SET a.name    = $name
+      SET a.course  = $course
+      SET a.type    = $type
+      SET a.start   = $start
+      SET a.end     = $end
+      SET a.fixed   = $fixed
+      SET a.updated = datetime({timezone: $timezone})
     RETURN a
     `,
     {
       id: parseInt(id),
-      ...parameters
+      ...parameters,
+      timezone
     }
   )
 }

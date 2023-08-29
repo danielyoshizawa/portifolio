@@ -1,15 +1,17 @@
-async function Create(database, parameters) {
+const timezone = process.env.TIMEZONE
 
+async function Create(database, parameters) {
   let query = `
     CREATE (
       a:WorkExperience {
-      company:$company,
-      position:$position,
-      location:$location,
-      start:$start,
-      end:$end,
-      description:$description,
-      fixed:$fixed
+      company     : $company,
+      position    : $position,
+      location    : $location,
+      start       : $start,
+      end         : $end,
+      description : $description,
+      fixed       : $fixed,
+      created     : datetime({timezone: $timezone})
     })
     WITH a
   `
@@ -17,14 +19,14 @@ async function Create(database, parameters) {
   tags && tags.map((tag, index) => {
     query += `
       MATCH (t${index}:Tag) WHERE ID(t${index}) = ${tag.identity}
-      MERGE (a)-[:TAGS]->(t${index})
+      MERGE (a)-[:TAGS {created: datetime({timezone: $timezone})}]->(t${index})
       WITH *
     `
   })
 
   query += `Return a`
 
-  return await database.run(query, parameters)
+  return await database.run(query, {...parameters, timezone})
 }
 
 async function Update(database, id, parameters) {
@@ -34,21 +36,22 @@ async function Update(database, id, parameters) {
       DELETE r
       WITH w
     MATCH (a:WorkExperience)
-      WHERE ID(a) = $id
-      SET a.company = $company
-      SET a.position = $position
-      SET a.location = $location
-      SET a.start = $start
-      SET a.end = $end
+      WHERE ID(a)       = $id
+      SET a.company     = $company
+      SET a.position    = $position
+      SET a.location    = $location
+      SET a.start       = $start
+      SET a.end         = $end
       SET a.description = $description
-      SET a.fixed = $fixed
+      SET a.fixed       = $fixed
+      SET a.updated     = datetime({timezone: $timezone})
       WITH a
   `
   const tags = parameters.tags;
   tags && tags.map((tag, index) => {
     query += `
       MATCH (t${index}:Tag) WHERE ID(t${index}) = ${tag.identity}
-      MERGE (a)-[:TAGS]->(t${index})
+      MERGE (a)-[:TAGS {updated: datetime({timezone: $timezone})}]->(t${index})
       WITH *
     `
   })
@@ -58,7 +61,8 @@ async function Update(database, id, parameters) {
   return await database.run(query,
     {
       id: parseInt(id),
-      ...parameters
+      ...parameters,
+      timezone
     }
   )
 }
