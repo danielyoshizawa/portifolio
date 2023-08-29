@@ -5,8 +5,14 @@ const tags   = require('./tags/Tags')
 const workExperience = require('./workExperience/WorkExperience')
 const education = require('./education/Education')
 const description = require('./description/Description')
+const auth = require('./auth/Auth')
 
 dotenv.config()
+
+function generateAccessToken(username) {
+  // TODO : Add expiresIn
+  return jwt.sign(username, process.env.TOKEN_SECRET)
+}
 
 // Middleman for authorization
 function authenticateToken(req, res, next) {
@@ -32,6 +38,7 @@ class Routes {
     this.workExperience = new workExperience.WorkExperience(this.app, this.database, authenticateToken)
     this.education = new education.Education(this.app, this.database, authenticateToken)
     this.description = new description.Description(this.app, this.database, authenticateToken)
+    this.auth = new auth.Auth(this.app, generateAccessToken, authenticateToken)
   }
 
   initialize() {
@@ -40,6 +47,7 @@ class Routes {
     this.workExperience.initialize()
     this.education.initialize()
     this.description.initialize()
+    this.auth.initialize()
   }
 }
 
