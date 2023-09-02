@@ -80,7 +80,11 @@ class WorkExperience {
     this.app.post('/workExperience/:id', this.authenticateToken, async (req, res) => {
       try {
         const records = await workExperience.Update(this.database, req.params.id, req.body)
-        res.status(200).send("Success")
+        if (records.length) {
+          res.status(201).send("Resource Updated")
+        } else {
+          res.status(503).header("Retry-After", 120).send("Unable to update resource")
+        }
       } catch (error) {
         res.status(500).send(error)
       }

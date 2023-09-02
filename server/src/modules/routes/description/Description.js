@@ -25,9 +25,9 @@ class Description {
       try {
         const records = await description.Update(this.database, req.body)
         if (records.length) {
-          res.status(201).send("Resource Created")
+          res.status(201).send("Resource Updated")
         } else {
-          res.status(503).header("Retry-After", 120).send("Unable to create resource")
+          res.status(503).header("Retry-After", 120).send("Unable to update resource")
         }
       } catch (error) {
         res.status(500).send(error)
