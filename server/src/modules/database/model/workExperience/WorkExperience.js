@@ -95,6 +95,7 @@ async function Delete(database, id) {
       MATCH (a:WorkExperience) WHERE ID(a) = $id
       OPTIONAL MATCH (a)-[r]-()
       DELETE a, r
+      RETURN COUNT(a)
     `,
     {id : parseInt(id)}
   )

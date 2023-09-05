@@ -56,7 +56,7 @@ async function GetUnique(database, id) {
 
 async function Delete(database, id) {
   return await database.run(
-    'MATCH (a:Course) WHERE ID(a) = $id DELETE a',
+    'MATCH (a:Course) WHERE ID(a) = $id DELETE a RETURN COUNT(a)',
     {id : parseInt(id)}
   )
 }
