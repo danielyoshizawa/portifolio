@@ -80,7 +80,11 @@ class Education {
     this.app.post('/education/:id/delete', this.authenticateToken, async (req, res) => {
       try {
         const records = await education.Delete(this.database, req.params.id)
-        res.status(200).send("Success")
+        if (records.length) {
+          res.status(200).send("Resource Deleted")
+        } else {
+          res.status(503).header("Retry-After", 120).send("Unable to delete resource")
+        }
       } catch (error) {
         res.status(500).send(error)
       }
