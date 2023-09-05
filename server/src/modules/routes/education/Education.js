@@ -50,7 +50,11 @@ class Education {
     this.app.post('/education/:id', this.authenticateToken, async (req, res) => {
       try {
         const records = await education.Update(this.database, req.params.id, req.body)
-        res.status(200).send("Success")
+        if (records.length) {
+          res.status(201).send("Resource Updated")
+        } else {
+          res.status(503).header("Retry-After", 120).send("Unable to update resource")
+        }
       } catch (error) {
         res.status(500).send(error)
       }
@@ -61,7 +65,11 @@ class Education {
     this.app.post('/education', this.authenticateToken, async (req, res) => {
       try {
         const records = await education.Create(this.database, req.body)
-        res.status(200).send("Success")
+        if (records.length) {
+          res.status(201).send("Resource Created")
+        } else {
+          res.status(503).header("Retry-After", 120).send("Unable to create resource")
+        }
       } catch (error) {
         res.status(500).send(error)
       }
@@ -72,7 +80,11 @@ class Education {
     this.app.post('/education/:id/delete', this.authenticateToken, async (req, res) => {
       try {
         const records = await education.Delete(this.database, req.params.id)
-        res.status(200).send("Success")
+        if (records.length) {
+          res.status(200).send("Resource Deleted")
+        } else {
+          res.status(503).header("Retry-After", 120).send("Unable to delete resource")
+        }
       } catch (error) {
         res.status(500).send(error)
       }

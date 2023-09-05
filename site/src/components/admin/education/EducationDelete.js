@@ -26,8 +26,10 @@ function EducationDelete() {
     .then((response) => {
       if (response.status === 200) {
         navigate("/admin/education/")
+      } else if (response.status === 503) {
+        setStatus("Unable to delete resource")
       } else {
-        setStatus(response.body)
+        setStatus("Something went wrong")
       }
     })
   }

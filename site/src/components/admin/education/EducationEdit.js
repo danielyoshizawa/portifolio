@@ -100,10 +100,12 @@ function EducationEdit(props) {
       }
     )
     .then((response) => {
-      if (response.status === 200) {
+      if (response.status === 201) {
         navigate("/admin/education/")
+      } else if (response.status === 503) {
+        setStatus("Unable to create resource")
       } else {
-        setStatus(response.body)
+        setStatus("Something went wrong")
       }
     })
   }
