@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router-dom'
 import Home from './pages/home/Home';
 import Admin from './pages/admin/Admin'
 import Description from './components/admin/description/Description'
+import DescriptionEdit from './components/admin/description/DescriptionEdit'
+import DescriptionDelete from './components/admin/description/DescriptionDelete'
 import Education from './components/admin/education/Education'
 import EducationEdit from './components/admin/education/EducationEdit'
 import EducationDelete from './components/admin/education/EducationDelete'
@@ -29,6 +31,18 @@ export const routes = createBrowserRouter([
       {
         path: "description",
         element: <Description />
+      },
+      {
+        path: "description/:id/edit",
+        element: <DescriptionEdit action="edit" />
+      },
+      {
+        path: "description/:id/delete",
+        element: <DescriptionDelete />
+      },
+      {
+        path: "description/new",
+        element: <DescriptionEdit action="new" />
       },
       {
         path: "education",

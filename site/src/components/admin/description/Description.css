@@ -1,6 +1,19 @@
+.description {
+  font-size: 1rem;
+}
+
+.description li {
+  list-style: none;
+}
+
 .description-form {
-  display: grid;
-  row-gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.description-form input {
+  margin: 0.5rem;
+  min-height: 2rem;
 }
 
 .description-form textarea {
