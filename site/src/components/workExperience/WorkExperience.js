@@ -18,7 +18,7 @@ function WorkExperience(props) {
         }
       </div>
       <div className="experience-show-more">
-        <p className="item" onClick={() => {setShowMore(!showMore)}}>{showMore ? "Show Less" : "Show More"}</p>
+        <p className="item" onClick={() => {setShowMore(!showMore)}}>{showMore ? "Show Less" : `Show More (${experiences.length})`}</p>
       </div>
     </div>
   )
