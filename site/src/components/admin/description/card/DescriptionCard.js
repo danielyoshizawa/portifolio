@@ -22,6 +22,14 @@ function DescriptionCard(props) {
           <p>Description : {item.description}</p>
         </div>
       </div>
+      <div className="admin-description-card-description-section">
+        <p>Tags : </p>
+        <ul className="admin-description-card-tag-list" data-testid="admin-description-card-tag-list">
+          { item.tags && item.tags.map((tag, index) => {
+            return (<li className="admin-description-card-tag-item" key={`tag-item-${index}`}>{tag && tag.properties ? tag.properties.name : ""}</li>)
+          })}
+        </ul>
+      </div>
       <div className="admin-description-card-action">
         <button className="admin-description-card-action-item" key={"admin-description-card-action-edit-item-"+index} onClick={onEdit}><p>Edit</p></button>
         <button className="admin-description-card-action-item" key={"admin-description-card-action-delete-item-"+index} onClick={onDelete}><p>Delete</p></button>
