@@ -9,7 +9,12 @@ const DescriptionSchema = {
       name       : "description",
       type       : "text",
       required   : true
-    }
+    },
+    {
+      name       : "tags",
+      type       : "array",
+      required   : true
+    },
   ]
 }
 
