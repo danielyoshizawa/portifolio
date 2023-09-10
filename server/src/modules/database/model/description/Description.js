@@ -31,7 +31,7 @@ async function Create(database, description) {
   )
 }
 
-async function Update(database, id, description) {
+async function Update(database, id, parameters) {
   let query = `
     OPTIONAL MATCH (d:Description)-[r:TAGS]-(b:Tag)
       WHERE ID(d) = $id
@@ -48,7 +48,7 @@ async function Update(database, id, description) {
   tags && tags.map((tag, index) => {
     query += `
       MATCH (t${index}:Tag)
-        WHERE ID(t${index}) = ${tag.idenditiy}
+        WHERE ID(t${index}) = ${tag.identity}
       MERGE (a)-[:TAGS {updated: datetime({timezone: $timezone})}]->(t${index})
       WITH *
     `
@@ -59,7 +59,7 @@ async function Update(database, id, description) {
     query,
     {
       id : parseInt(id),
-      ...description,
+      ...parameters,
       timezone
     }
   )
