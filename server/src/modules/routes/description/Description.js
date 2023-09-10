@@ -11,19 +11,52 @@ class Description {
     this.app.get('/description', async (req, res) => {
       try {
         const records = await description.Get(this.database)
+
+        if (records.length === 0) {
+          return res.status(503).send("Unable to find resource")
+        }
+
+        const response = records.map((elem) => {
+          const node = elem.get(0)
+          return {
+            id          : node.identity,
+            title       : node.properties.title,
+            description : node.properties.description
+          }
+        })
+        res.status(200).json(JSON.stringify(response))
+      } catch(error) {
+        res.status(500).send(error)
+      }
+    })
+
+    this.app.get('/description/:id', async (req, res) => {
+      try {
+        const records = await description.GetUnique(this.database, req.params.id)
+
+        if (records.length === 0) {
+          return res.status(503).send("Unable to find resource")
+        }
+
         const singleRecord = records[0]
         const node = singleRecord.get(0)
-        res.json(JSON.stringify(node.properties))
-      } catch(error) {
+        res.status(200).json(JSON.stringify(
+          {
+            id          : node.identity,
+            title       : node.properties.title,
+            description : node.properties.description
+          }
+        ))
+      } catch (error) {
         res.status(500).send(error)
       }
     })
   }
 
   _update() {
-    this.app.post('/description', this.authenticateToken, async (req, res) => {
+    this.app.post('/description/:id', this.authenticateToken, async (req, res) => {
       try {
-        const records = await description.Update(this.database, req.body)
+        const records = await description.Update(this.database, req.params.id, req.body)
         if (records.length) {
           res.status(201).send("Resource Updated")
         } else {
@@ -36,11 +69,33 @@ class Description {
   }
 
   _create() {
-    // TODO #142 : This will be implemented with the multiple descriptions update
+    this.app.post('/description', this.authenticateToken, async (req, res) => {
+      try {
+        const records = await description.Create(this.database, req.body)
+        if (records.length) {
+          res.status(201).send("Resource Created")
+        } else {
+          res.status(503).header("Retry-After", 120).send("Unable to create resource")
+        }
+      } catch (error) {
+        res.status(500).send(error)
+      }
+    })
   }
 
   _remove() {
-    // TODO #142 : This will be implemented with the multiple descriptions update
+    this.app.post('/description/:id/delete', this.authenticateToken, async (req, res) => {
+      try {
+        const records = await description.Delete(this.database, req.params.id)
+        if (records.length) {
+          res.status(200).send("Resource Deleted")
+        } else {
+          res.status(503).header("Retry-After", 120).send("Unable to delete resource")
+        }
+      } catch (error) {
+        res.status(500).send(error)
+      }
+    })
   }
 
   initialize() {

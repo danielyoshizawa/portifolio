@@ -17,6 +17,7 @@ async function Create(database, description) {
 async function Update(database, description) {
   return await database.run(
     `MATCH (a:Description)
+      WHERE ID(a)       = $id
       SET a.title       = $title
       SET a.description = $description
       SET a.updated     = datetime({timezone: $timezone})
@@ -36,4 +37,19 @@ async function Get(database) {
   )
 }
 
-module.exports = {Create, Update, Get}
+
+async function GetUnique(database, id) {
+  return await database.run(
+    'MATCH (a:Description) WHERE ID(a) = $id RETURN a',
+    {id : parseInt(id)}
+  )
+}
+
+async function Delete(database, id) {
+  return await database.run(
+    'MATCH (a:Description) WHERE ID(a) = $id DELETE a RETURN COUNT(a)',
+    {id : parseInt(id)}
+  )
+}
+
+module.exports = {Create, Update, Get, GetUnique, Delete}

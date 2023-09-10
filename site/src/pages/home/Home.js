@@ -9,7 +9,7 @@ import Footer from '../../components/footer/Footer'
 import {useState, useEffect } from 'react'
 
 function Home() {
-  const [description, setDescription] = useState({title: "", description: ""});
+  const [description, setDescription] = useState([{title: "", description: ""}]);
   const [education, setEducation] = useState({education: [{}]});
   const [course, setCourse] = useState({course: [{}]});
   const [workExperience, setWorkExperience] = useState({workExperience: [{ description: "", tags : []}]});

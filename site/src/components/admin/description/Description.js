@@ -1,11 +1,12 @@
 import './Description.css'
 import {useState, useEffect} from 'react'
-import { getCookie } from '../../util/cookieManipulation'
+import isEmpty from '../../util/IsEmpty'
+import DescriptionCard from './card/DescriptionCard'
+import {useNavigate} from 'react-router-dom'
 
 function Description() {
-  const [title, setTitle] = useState("")
-  const [description, setDescription] = useState("")
-  const [status, setStatus] = useState("")
+  const [descriptions, setDescriptions] = useState()
+  const navigate = useNavigate()
   const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   useEffect(() => {
@@ -13,56 +14,33 @@ function Description() {
       .then((response) => response.json())
       .then((json) => {
         const resp = JSON.parse(json)
-        setTitle(resp.title)
-        setDescription(resp.description)
+        if (!isEmpty(resp)) {
+          setDescriptions(resp)
+        }
       })
   }, [])
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    const resp = {
-      title       : title,
-      description : description
-    }
-    fetch(serverAddress + "/description",
-      {
-        method: 'POST',
-        mode: 'cors',
-        body: JSON.stringify(resp),
-        headers : {
-          'Content-Type' : 'application/json',
-          'Authorization' : "Bearer " + getCookie('token')
-        }
-      }
-    )
-    .then((response) => {
-      if (response.status === 201) {
-        setStatus("Success")
-      } else if (response.status === 503) {
-        setStatus("Unable to create resource")
-      } else {
-        setStatus("Something went wrong")
-      }
-    })
-  }
+  let emptyMessage = (!descriptions || descriptions.length === 0) ? <p>Dude, you need to define yourself!</p> : ""
 
   return (
-    <form className="description-form" onSubmit={handleSubmit}>
-      <label>Title :</label>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <label>Description :</label>
-      <textarea
-        value={description}
-        onChange={(e) => {setDescription(e.target.value)}}
-      >
-      </textarea>
-      <input type="submit" />
-      <p>{status}</p>
-    </form>
+    <div className="description">
+      <ul>
+        { descriptions &&
+          descriptions.map((item, index) => {
+              return (
+                <li key={index}>
+                  <DescriptionCard index={index} item={item} />
+                </li>
+              )
+            }
+          )
+        }
+      </ul>
+      <div>{emptyMessage}</div>
+      <div className="admin-description-actions">
+        <button onClick={() => {navigate("/admin/description/new")}}>New</button>
+      </div>
+    </div>
   )
 }
 
