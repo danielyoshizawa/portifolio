@@ -18,7 +18,7 @@ function Education(props) {
         }
       </div>
       <div className="education-show-more">
-        <p className="item" onClick={() => {setShowMore(!showMore)}}>{showMore ? "Show Less" : "Show More"}</p>
+        <p className="item" onClick={() => {setShowMore(!showMore)}}>{showMore ? "Show Less" : `Show More (${education.length})`}</p>
       </div>
     </div>
   )
