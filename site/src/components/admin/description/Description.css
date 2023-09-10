@@ -20,3 +20,21 @@
   width: auto;
   height: 20rem;
 }
+
+.admin-description-tag-list {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  max-height: 20rem;
+  padding: 0;
+}
+
+.admin-description-tag-item {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-height: 2rem;
+  margin: 0.1rem;
+  border: 1px solid black;
+}
