@@ -16,14 +16,32 @@ class Description {
           return res.status(503).send("Unable to find resource")
         }
 
-        const response = records.map((elem) => {
+        // Concatenate tags
+        const tagsNodes = new Map()
+        records.map((elem) => {
+          const id = elem.get(0).identity
+          let tags = tagsNodes.get(id) || []
+          tags.push(elem.get(1))
+          tagsNodes.set(id, tags)
+        })
+
+        let response = []
+        const visited = new Map()
+        records.map((elem) => {
           const node = elem.get(0)
-          return {
+          const id = node.identity
+
+          if (visited.get(id)) return
+          else visited.set(id, true)
+
+          response.push({
             id          : node.identity,
             title       : node.properties.title,
-            description : node.properties.description
-          }
+            description : node.properties.description,
+            tags        : tagsNodes.get(id)
+          })
         })
+
         res.status(200).json(JSON.stringify(response))
       } catch(error) {
         res.status(500).send(error)
@@ -40,11 +58,22 @@ class Description {
 
         const singleRecord = records[0]
         const node = singleRecord.get(0)
+
+        // Concatenate tags
+        const tagsNodes = new Map()
+        records.map((elem) => {
+          const id = elem.get(0).identity
+          let tags = tagsNodes.get(id) || []
+          tags.push(elem.get(1))
+          tagsNodes.set(id, tags)
+        })
+
         res.status(200).json(JSON.stringify(
           {
             id          : node.identity,
             title       : node.properties.title,
-            description : node.properties.description
+            description : node.properties.description,
+            tags        : tagsNodes.get(node.identity)
           }
         ))
       } catch (error) {
