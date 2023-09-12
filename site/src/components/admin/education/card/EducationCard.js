@@ -26,6 +26,14 @@ function EducationCard(props) {
           <p>Start - End Date : {item.start} - {item.end}</p>
           <p>Fixed : {item.fixed ? "yes" : "no"}</p>
         </div>
+        <div className="admin-education-card-description-section">
+          <p>Tags : </p>
+          <ul className="admin-education-card-tag-list" data-testid="admin-education-card-tag-list">
+            { item.tags && item.tags.map((tag, index) => {
+              return (<li className="admin-education-card-tag-item" key={`tag-item-${index}`}>{tag && tag.properties ? tag.properties.name : ""}</li>)
+            })}
+          </ul>
+        </div>
       </div>
       <div className="admin-education-card-action">
         <button className="admin-education-card-action-item" key={"admin-education-card-action-edit-item-"+index} onClick={onEdit}><p>Edit</p></button>
