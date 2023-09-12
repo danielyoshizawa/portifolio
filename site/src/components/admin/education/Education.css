@@ -22,3 +22,21 @@
   margin: 0.5rem;
   min-height: 2rem;
 }
+
+.admin-education-tag-list {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+  max-height: 20rem;
+  padding: 0;
+}
+
+.admin-education-tag-item {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-height: 2rem;
+  margin: 0.1rem;
+  border: 1px solid black;
+}

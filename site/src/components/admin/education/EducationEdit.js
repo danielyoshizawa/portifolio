@@ -17,14 +17,24 @@ function EducationEdit(props) {
     type   : useRef(),
     start  : useRef(),
     end    : useRef(),
+    tags   : useRef([]),
     fixed  : useRef()
   }
 
   const [status, setStatus] = useState("")
+  const [tags, setTags] = useState([])
   const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   // Load resource from database
   useEffect(() => {
+    // Fetch all the tags
+    fetch(serverAddress + "/tags")
+      .then((response) => response.json())
+      .then((json) =>{
+        const resp = JSON.parse(json)
+        setTags(resp.tags)
+    })
+
     // If it's a new entry, we don't need to load from the database
     if (props.action === "new") {
       return
@@ -46,6 +56,18 @@ function EducationEdit(props) {
           refs.start.current.value    = resp.start
           refs.end.current.value      = resp.end
           refs.fixed.current.checked  = resp.fixed
+
+          let tagsMap = new Map()
+          resp.tags && resp.tags.map((item) => {
+            if (item) {
+              tagsMap.set(item.identity, true)
+            }
+          })
+          refs.tags && refs.tags.current.map((item) => {
+            if (item && tagsMap.get(parseInt(item.value))) {
+              item.checked = true;
+            }
+          })
         }
       })
   }, [props.action
@@ -56,6 +78,7 @@ function EducationEdit(props) {
     , refs.type
     , refs.start
     , refs.end
+    , refs.tags
     , refs.fixed
   ])
 
@@ -72,13 +95,21 @@ function EducationEdit(props) {
   const handleSubmit = (event) => {
     event.preventDefault()
 
+    let tagsResp = []
+    refs.tags.current.map((item) => {
+      if (item.checked) {
+        tagsResp.push({identity : item.value})
+      }
+    })
+
     const item = {
       name   : refs.name.current.value,
       course : refs.course.current.value,
       type   : refs.type.current.value,
       start  : refs.start.current.value,
       end    : refs.end.current.value,
-      fixed  : refs.fixed.current.checked
+      fixed  : refs.fixed.current.checked,
+      tags   : tagsResp
     }
 
     if (!validateItem(item)) return
@@ -142,6 +173,18 @@ function EducationEdit(props) {
           type="text"
           ref={refs.end}
         />
+        <label>Tags</label>
+        <ul className="admin-education-tag-list">
+        {tags && tags.map((item, index) => {
+          return (
+            <li className="admin-education-tag-item" key={index}>
+              <input type="checkbox" value={item.id} ref={(element) => { refs.tags.current[index] = element }
+              } />
+              <p>{item.id} || {item.name} || {item.type}</p>
+            </li>
+          )
+        })}
+        </ul>
         <label>Fixed :</label>
         <input
           type="checkbox"

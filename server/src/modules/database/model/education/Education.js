@@ -1,17 +1,32 @@
 const timezone = process.env.TIMEZONE
 
 async function Create(database, parameters) {
+  let query = `
+    CREATE (
+      a:Education {
+        name    : $name,
+        course  : $course,
+        type    : $type,
+        start   : $start,
+        end     : $end,
+        fixed   : $fixed,
+        created : datetime({timezone: $timezone})
+    })
+    WITH a
+  `
+  const tags = parameters.tags;
+  tags && tags.map((tag, index) => {
+    query += `
+      MATCH (t${index}:Tag) WHERE ID(t${index}) = ${tag.identity}
+      MERGE (a)-[:TAGS {created: datetime({timezone: $timezone})}]->(t${index})
+      WITH *
+    `
+  })
+
+  query += `RETURN a`
+
   return await database.run(
-    `CREATE (a:Education {
-      name    : $name,
-      course  : $course,
-      type    : $type,
-      start   : $start,
-      end     : $end,
-      fixed   : $fixed,
-      created : datetime({timezone: $timezone})
-    }) RETURN a
-    `,
+    query,
     {
       ...parameters,
       timezone
@@ -20,8 +35,12 @@ async function Create(database, parameters) {
 }
 
 async function Update(database, id, parameters) {
-  return await database.run(
-    `MATCH (a:Education)
+  let query = `
+    OPTIONAL MATCH (e:Education)-[r:TAGS]-(b:Tag)
+      WHERE ID(e) = $id
+      DELETE r
+      WITH e
+    MATCH (a:Education)
       WHERE ID(a)   = $id
       SET a.name    = $name
       SET a.course  = $course
@@ -30,8 +49,21 @@ async function Update(database, id, parameters) {
       SET a.end     = $end
       SET a.fixed   = $fixed
       SET a.updated = datetime({timezone: $timezone})
-    RETURN a
-    `,
+    WITH a
+  `
+  const tags = parameters.tags;
+  tags && tags.map((tag, index) => {
+    query += `
+      MATCH (t${index}:Tag) WHERE ID(t${index}) = ${tag.identity}
+      MERGE (a)-[:TAGS {updated: datetime({timezone: $timezone})}]->(t${index})
+      WITH *
+    `
+  })
+
+  query += 'RETURN a'
+
+  return await database.run(
+    query,
     {
       id: parseInt(id),
       ...parameters,
@@ -42,21 +74,34 @@ async function Update(database, id, parameters) {
 
 async function Get(database) {
   return await database.run(
-    'MATCH (a:Education) RETURN a',
+    `
+      MATCH (a:Education)
+      OPTIONAL MATCH (a)-[:TAGS]->(b:Tag)
+      RETURN a,b
+    `,
     {}
   )
 }
 
 async function GetUnique(database, id) {
   return await database.run(
-    'MATCH (a:Education) WHERE ID(a) = $id RETURN a',
+    `
+      MATCH (a:Education) WHERE ID(a) = $id
+      OPTIONAL MATCH (a)-[:TAGS]->(b:Tag)
+      RETURN a,b
+    `,
     {id : parseInt(id)}
   )
 }
 
 async function Delete(database, id) {
   return await database.run(
-    'MATCH (a:Education) WHERE ID(a) = $id DELETE a RETURN COUNT(a)',
+    `
+      MATCH (a:Education) WHERE ID(a) = $id
+      OPTIONAL MATCH (a)-[r]-()
+      DELETE a, r
+      RETURN COUNT(a)
+    `,
     {id : parseInt(id)}
   )
 }
