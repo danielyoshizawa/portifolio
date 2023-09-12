@@ -39,11 +39,12 @@ class Education {
             start  : node.properties.start,
             end    : node.properties.end,
             fixed  : node.properties.fixed,
-            tags   : tagsNode.get(id)
+            tags   : tagsNodes.get(id)
           })
         })
         res.status(200).json(JSON.stringify(response))
       } catch (error) {
+        console.log(error)
         res.status(500).send(error)
       }
     })

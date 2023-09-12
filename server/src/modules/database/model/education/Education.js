@@ -39,7 +39,7 @@ async function Update(database, id, parameters) {
     OPTIONAL MATCH (e:Education)-[r:TAGS]-(b:Tag)
       WHERE ID(e) = $id
       DELETE r
-      WITH w
+      WITH e
     MATCH (a:Education)
       WHERE ID(a)   = $id
       SET a.name    = $name
