@@ -32,14 +32,15 @@ class Education {
           else visited.set(id, true)
 
           response.education.push({
-            id     : id,
-            name   : node.properties.name,
-            course : node.properties.course,
-            type   : node.properties.type,
-            start  : node.properties.start,
-            end    : node.properties.end,
-            fixed  : node.properties.fixed,
-            tags   : tagsNodes.get(id)
+            id          : id,
+            name        : node.properties.name,
+            course      : node.properties.course,
+            type        : node.properties.type,
+            start       : node.properties.start,
+            end         : node.properties.end,
+            fixed       : node.properties.fixed,
+            priotity    : node.properties.priotity,
+            tags        : tagsNodes.get(id)
           })
         })
         res.status(200).json(JSON.stringify(response))
