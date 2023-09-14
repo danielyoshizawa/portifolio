@@ -25,6 +25,7 @@ function CourseCard(props) {
         <div className="admin-course-card-description-section">
           <p>Institution : {item.institution}</p>
           <p>Year : {item.date}</p>
+          <p>Priority : {item.priority}</p>
           <p>Fixed : {item.fixed ? "yes" : "no"}</p>
         </div>
         <div className="admin-course-card-description-section">
