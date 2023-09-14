@@ -11,17 +11,35 @@ class Course {
     this.app.get('/course', async (req, res) => {
       try {
         const records = await course.Get(this.database)
+
+        // Concatenate tags
+        const tagsNodes = new Map()
+        records.map((elem) => {
+          const id   = elem.get(0).identity
+          let tags = tagsNodes.get(id) || []
+          tags.push(elem.get(1))
+          tagsNodes.set(id, tags)
+        })
+
         let response = { course: [] }
+        const visited = new Map()
         records.map((elem) => {
           const node = elem.get(0)
+          const id = node.identity;
+
+          // To avoid duplication, since cypher returns one entry per relationship
+          if (visited.get(id)) return
+          else visited.set(id, true)
+
           response.course.push({
-            id          : node.identity,
+            id          : id,
             name        : node.properties.name,
             date        : node.properties.date,
             institution : node.properties.institution,
             validation  : node.properties.validation,
             link        : node.properties.date,
-            fixed       : node.properties.fixed
+            fixed       : node.properties.fixed,
+            tags        : tagsNodes.get(id)
           })
         })
         res.status(200).json(JSON.stringify(response))
@@ -36,9 +54,19 @@ class Course {
         const records = await course.GetUnique(this.database, req.params.id)
         const singleRecord = records[0]
         const node = singleRecord.get(0)
+        // TODO : Extract Method
+        const tagsNodes = new Map()
+        records.map((elem) => {
+          const id   = elem.get(0).identity
+          let tags = tagsNodes.get(id) || []
+          tags.push(elem.get(1))
+          tagsNodes.set(id, tags)
+        })
+
         res.status(200).json(JSON.stringify(
           { id : node.identity,
-            ...node.properties
+            ...node.properties,
+            tags : tagsNodes.get(node.identity)
           }
         ))
       } catch (error) {
