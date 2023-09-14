@@ -2,11 +2,14 @@ const timezone = process.env.TIMEZONE
 
 async function Create(database, parameters) {
   return await database.run(
-    `CREATE (a:Tag {
-      name    : $name,
-      type    : $type,
-      created : datetime({timezone: $timezone})
-    }) RETURN a
+    `
+      CREATE (a:Tag {
+        name     : $name,
+        type     : $type,
+        priority : $priority,
+        created  : datetime({timezone: $timezone})
+      })
+      RETURN a
     `,
     {
       ...parameters,
@@ -17,12 +20,14 @@ async function Create(database, parameters) {
 
 async function Update(database, id, parameters) {
   return await database.run(
-    `MATCH (a:Tag)
-      WHERE ID(a)   = $id
-      SET a.name    = $name
-      SET a.type    = $type
-      SET a.updated = datetime({timezone: $timezone})
-    RETURN a
+    `
+      MATCH (a:Tag)
+        WHERE ID(a)    = $id
+        SET a.name     = $name
+        SET a.type     = $type
+        SET a.priority = $priority
+        SET a.updated  = datetime({timezone: $timezone})
+      RETURN a
     `,
     {
       id: parseInt(id),
