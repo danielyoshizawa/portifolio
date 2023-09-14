@@ -7,6 +7,7 @@ import WorkExperience from '../../components/workExperience/WorkExperience'
 import Courses from '../../components/courses/Courses'
 import Education from '../../components/education/Education'
 import Footer from '../../components/footer/Footer'
+import Filter from '../../components/filter/Filter'
 
 export const FilterContext = createContext('default')
 
@@ -16,6 +17,7 @@ function Home() {
   const [course, setCourse] = useState({course: [{}]});
   const [workExperience, setWorkExperience] = useState({workExperience: [{ description: "", tags : []}]});
   const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
+  const [filter, setFilter] = useState('default')
 
   useEffect(() => {
     fetch(serverAddress + "/description")
@@ -44,7 +46,8 @@ function Home() {
     <>
       <Navbar />
       <Hero />
-      <FilterContext.Provider value='default'>
+      <FilterContext.Provider value={filter}>
+        <Filter setFilter={(tag) => { setFilter(tag) }} />
         <Description description={description} />
         <WorkExperience experiences={workExperience.workExperience} />
         <Courses courses={course.course} />
