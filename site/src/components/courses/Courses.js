@@ -1,9 +1,10 @@
 import './Courses.css'
 import CourseCard from './card/CourseCard'
 import {useState} from 'react'
+import order from '../util/order'
 
 function Courses (props) {
-  const courses = props.courses
+  const courses = order(props.courses)
   const [showMore, setShowMore] = useState(false);
   return (
     <div id="certifications-background">
