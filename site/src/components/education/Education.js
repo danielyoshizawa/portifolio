@@ -1,10 +1,12 @@
 import './Education.css'
 import EducationCard from './card/EducationCard'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import order from '../util/order'
+import filter from '../util/filter'
+import { FilterContext } from '../../pages/home/Home'
 
 function Education(props) {
-  const education = order(props.education)
+  const education = filter(order(props.education), useContext( FilterContext ))
   const [showMore, setShowMore] = useState(false)
   return (
     <div id="education">

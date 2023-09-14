@@ -1,10 +1,12 @@
 import './WorkExperience.css'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import WorkCard from './card/WorkCard'
 import order from '../util/order'
+import filter from '../util/filter'
+import { FilterContext } from '../../pages/home/Home'
 
 function WorkExperience(props) {
-  const experiences = order(props.experiences)
+  const experiences = filter(order(props.experiences), useContext( FilterContext ))
   const [showMore, setShowMore] = useState(false);
   return (
     <div id="experience">

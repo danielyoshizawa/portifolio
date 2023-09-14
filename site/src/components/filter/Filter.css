@@ -1,0 +1,43 @@
+/* Prussian Blue : #0B3C5D
+Sky Blue : #328CC1
+Gold Leaf : #D9B310
+Ivory Black : #1D2731 */
+
+.filter-background {
+  background-color: #0B3C5D;
+  margin-bottom: 1rem;
+}
+.filter {
+  margin: auto;
+  max-width: 1080px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 1rem;
+}
+
+.filter-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 0;
+  margin-top: 1rem;
+  /* margin-bottom: 1rem; */
+  padding: 0;
+}
+
+.filter-item {
+  display: flex;
+  justify-content: center;
+  background-color: #1D2731;
+  color: #D9B310;
+  min-width: 10rem;
+  min-height: auto;
+}
+
+.filter-item.active {
+  background-color: #D9B310;
+  color: #1D2731;
+}

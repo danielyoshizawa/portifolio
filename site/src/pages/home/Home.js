@@ -1,4 +1,5 @@
 import './Home.css';
+import {useState, useEffect, createContext } from 'react'
 import Navbar from '../../components/navbar/Navbar'
 import Hero from '../../components/hero/Hero'
 import Description from '../../components/description/Description'
@@ -6,7 +7,9 @@ import WorkExperience from '../../components/workExperience/WorkExperience'
 import Courses from '../../components/courses/Courses'
 import Education from '../../components/education/Education'
 import Footer from '../../components/footer/Footer'
-import {useState, useEffect } from 'react'
+import Filter from '../../components/filter/Filter'
+
+export const FilterContext = createContext('default')
 
 function Home() {
   const [description, setDescription] = useState([{title: "", description: ""}]);
@@ -14,6 +17,7 @@ function Home() {
   const [course, setCourse] = useState({course: [{}]});
   const [workExperience, setWorkExperience] = useState({workExperience: [{ description: "", tags : []}]});
   const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
+  const [filter, setFilter] = useState('default')
 
   useEffect(() => {
     fetch(serverAddress + "/description")
@@ -42,10 +46,13 @@ function Home() {
     <>
       <Navbar />
       <Hero />
-      <Description description={description} />
-      <WorkExperience experiences={workExperience.workExperience} />
-      <Courses courses={course.course} />
-      <Education education={education.education} />
+      <FilterContext.Provider value={filter}>
+        <Filter setFilter={(tag) => { setFilter(tag) }} />
+        <Description description={description} />
+        <WorkExperience experiences={workExperience.workExperience} />
+        <Courses courses={course.course} />
+        <Education education={education.education} />
+      </FilterContext.Provider>
       <Footer />
     </>
   );

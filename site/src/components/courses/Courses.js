@@ -1,11 +1,14 @@
 import './Courses.css'
 import CourseCard from './card/CourseCard'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import order from '../util/order'
+import filter from '../util/filter'
+import { FilterContext } from '../../pages/home/Home'
 
 function Courses (props) {
-  const courses = order(props.courses)
+  const courses = filter(order(props.courses), useContext( FilterContext ))
   const [showMore, setShowMore] = useState(false);
+
   return (
     <div id="certifications-background">
       <div id="certifications">
