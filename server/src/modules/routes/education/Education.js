@@ -39,7 +39,7 @@ class Education {
             start       : node.properties.start,
             end         : node.properties.end,
             fixed       : node.properties.fixed,
-            priotity    : node.properties.priotity,
+            priority    : node.properties.priority,
             tags        : tagsNodes.get(id)
           })
         })

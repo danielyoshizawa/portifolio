@@ -18,7 +18,7 @@ class Tags {
             id          : node.identity,
             name        : node.properties.name,
             type        : node.properties.type,
-            priotity    : node.properties.priotity
+            priority    : node.properties.priority,
           })
         })
         res.status(200).json(JSON.stringify(response))

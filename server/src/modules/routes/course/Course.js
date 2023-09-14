@@ -39,7 +39,7 @@ class Course {
             validation  : node.properties.validation,
             link        : node.properties.date,
             fixed       : node.properties.fixed,
-            priotity    : node.properties.priotity,
+            priority    : node.properties.priority,
             tags        : tagsNodes.get(id)
           })
         })
