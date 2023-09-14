@@ -11,6 +11,7 @@ async function Create(database, parameters) {
       end         : $end,
       description : $description,
       fixed       : $fixed,
+      priority    : $priority,
       created     : datetime({timezone: $timezone})
     })
     WITH a
@@ -44,6 +45,7 @@ async function Update(database, id, parameters) {
       SET a.end         = $end
       SET a.description = $description
       SET a.fixed       = $fixed
+      SET a.priority    = $priority
       SET a.updated     = datetime({timezone: $timezone})
       WITH a
   `

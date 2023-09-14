@@ -12,8 +12,9 @@ function TagsEdit(props) {
   // References
   const refs =
   {
-    name   : useRef(),
-    type   : useRef()
+    name     : useRef(),
+    type     : useRef(),
+    priority : useRef()
   }
 
   const [status, setStatus] = useState("")
@@ -38,6 +39,7 @@ function TagsEdit(props) {
         if (!isEmpty(resp)) {
           refs.name.current.value     = resp.name
           refs.type.current.value     = resp.type
+          refs.priority.current.value = resp.priority
         }
       })
   }, [props.action
@@ -45,6 +47,7 @@ function TagsEdit(props) {
     , serverAddress
     , refs.name
     , refs.type
+    , refs.priority
   ])
 
   const validateItem = (item) => {
@@ -61,8 +64,9 @@ function TagsEdit(props) {
     event.preventDefault()
 
     const item = {
-      name   : refs.name.current.value,
-      type   : refs.type.current.value
+      name     : refs.name.current.value,
+      type     : refs.type.current.value,
+      priority : refs.priority.current.value
     }
 
     if (!validateItem(item)) return
@@ -106,6 +110,11 @@ function TagsEdit(props) {
         <input
           type="text"
           ref={refs.type}
+        />
+        <label>Priority :</label>
+        <input
+          type="text"
+          ref={refs.priority}
         />
         <input type="submit" value="Save Changes"/>
         <input type="button" value="Cancel" onClick={() => navigate("/admin/tags/")} />

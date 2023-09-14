@@ -20,6 +20,7 @@ function TagsCard(props) {
           <p>Database Id : {item.id} </p>
           <p>Name : {item.name}</p>
           <p>Type : {item.type}</p>
+          <p>Priority : {item.priority}</p>
         </div>
       </div>
       <div className="admin-tags-card-action">

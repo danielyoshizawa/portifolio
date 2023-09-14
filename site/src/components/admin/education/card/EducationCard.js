@@ -24,6 +24,7 @@ function EducationCard(props) {
         <div className="admin-education-card-description-section">
           <p>Course Type : {item.type}</p>
           <p>Start - End Date : {item.start} - {item.end}</p>
+          <p>Priority : {item.priority}</p>
           <p>Fixed : {item.fixed ? "yes" : "no"}</p>
         </div>
         <div className="admin-education-card-description-section">

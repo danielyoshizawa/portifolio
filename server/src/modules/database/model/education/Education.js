@@ -4,13 +4,14 @@ async function Create(database, parameters) {
   let query = `
     CREATE (
       a:Education {
-        name    : $name,
-        course  : $course,
-        type    : $type,
-        start   : $start,
-        end     : $end,
-        fixed   : $fixed,
-        created : datetime({timezone: $timezone})
+        name     : $name,
+        course   : $course,
+        type     : $type,
+        start    : $start,
+        end      : $end,
+        fixed    : $fixed,
+        priority : $priority,
+        created  : datetime({timezone: $timezone})
     })
     WITH a
   `
@@ -41,14 +42,15 @@ async function Update(database, id, parameters) {
       DELETE r
       WITH e
     MATCH (a:Education)
-      WHERE ID(a)   = $id
-      SET a.name    = $name
-      SET a.course  = $course
-      SET a.type    = $type
-      SET a.start   = $start
-      SET a.end     = $end
-      SET a.fixed   = $fixed
-      SET a.updated = datetime({timezone: $timezone})
+      WHERE ID(a)    = $id
+      SET a.name     = $name
+      SET a.course   = $course
+      SET a.type     = $type
+      SET a.start    = $start
+      SET a.end      = $end
+      SET a.fixed    = $fixed
+      SET a.priority = $priority
+      SET a.updated  = datetime({timezone: $timezone})
     WITH a
   `
   const tags = parameters.tags;

@@ -1,9 +1,10 @@
 import './Education.css'
 import EducationCard from './card/EducationCard'
 import {useState} from 'react'
+import order from '../util/order'
 
 function Education(props) {
-  const education = props.education
+  const education = order(props.education)
   const [showMore, setShowMore] = useState(false)
   return (
     <div id="education">

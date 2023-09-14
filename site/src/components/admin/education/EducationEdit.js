@@ -12,13 +12,14 @@ function EducationEdit(props) {
   // References
   const refs =
   {
-    name   : useRef(),
-    course : useRef(),
-    type   : useRef(),
-    start  : useRef(),
-    end    : useRef(),
-    tags   : useRef([]),
-    fixed  : useRef()
+    name     : useRef(),
+    course   : useRef(),
+    type     : useRef(),
+    start    : useRef(),
+    end      : useRef(),
+    priority : useRef(),
+    tags     : useRef([]),
+    fixed    : useRef()
   }
 
   const [status, setStatus] = useState("")
@@ -55,6 +56,7 @@ function EducationEdit(props) {
           refs.type.current.value     = resp.type
           refs.start.current.value    = resp.start
           refs.end.current.value      = resp.end
+          refs.priority.current.value = resp.priority
           refs.fixed.current.checked  = resp.fixed
 
           let tagsMap = new Map()
@@ -78,6 +80,7 @@ function EducationEdit(props) {
     , refs.type
     , refs.start
     , refs.end
+    , refs.priority
     , refs.tags
     , refs.fixed
   ])
@@ -103,13 +106,14 @@ function EducationEdit(props) {
     })
 
     const item = {
-      name   : refs.name.current.value,
-      course : refs.course.current.value,
-      type   : refs.type.current.value,
-      start  : refs.start.current.value,
-      end    : refs.end.current.value,
-      fixed  : refs.fixed.current.checked,
-      tags   : tagsResp
+      name     : refs.name.current.value,
+      course   : refs.course.current.value,
+      type     : refs.type.current.value,
+      start    : refs.start.current.value,
+      end      : refs.end.current.value,
+      priority : refs.priority.current.value,
+      fixed    : refs.fixed.current.checked,
+      tags     : tagsResp
     }
 
     if (!validateItem(item)) return
@@ -172,6 +176,11 @@ function EducationEdit(props) {
         <input
           type="text"
           ref={refs.end}
+        />
+        <label>Priority :</label>
+        <input
+          type="text"
+          ref={refs.priority}
         />
         <label>Tags</label>
         <ul className="admin-education-tag-list">

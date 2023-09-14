@@ -24,6 +24,7 @@ function WorkExperienceCard(props) {
         <div className="admin-work-experience-card-description-section">
           <p>Location : {item.location}</p>
           <p>Start - End Date : {item.start} - {item.end}</p>
+          <p>Priority : {item.priority}</p>
           <p>Fixed : {item.fixed ? "yes" : "no"}</p>
         </div>
         <div className="admin-work-experience-card-description-section">

@@ -40,6 +40,7 @@ class WorkExperience {
             end         : node.properties.end,
             description : node.properties.description,
             fixed       : node.properties.fixed,
+            priority    : node.properties.priority,
             tags        : tagsNodes.get(id)
           })
         })

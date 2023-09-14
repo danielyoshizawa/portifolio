@@ -9,6 +9,7 @@ async function Create(database, parameters) {
       validation  : $validation,
       link        : $link,
       fixed       : $fixed,
+      priority    : $priority,
       created     : datetime({timezone: $timezone})
     })
     WITH a
@@ -47,6 +48,7 @@ async function Update(database, id, parameters) {
       SET a.validation  = $validation
       SET a.link        = $link
       SET a.fixed       = $fixed
+      SET a.priority    = $priority
       SET a.updated     = datetime({timezone: $timezone})
     WITH a
   `

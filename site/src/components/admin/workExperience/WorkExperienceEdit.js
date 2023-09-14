@@ -18,6 +18,7 @@ function WorkExperienceEdit(props) {
     start       : useRef(),
     end         : useRef(),
     description : useRef(),
+    priority    : useRef(),
     tags        : useRef([]),
     fixed       : useRef()
   }
@@ -58,6 +59,7 @@ function WorkExperienceEdit(props) {
           refs.start.current.value       = resp.start
           refs.end.current.value         = resp.end
           refs.description.current.value = resp.description
+          refs.priority.current.value    = resp.priority
           refs.fixed.current.checked     = resp.fixed
 
           let tagsMap = new Map()
@@ -82,6 +84,7 @@ function WorkExperienceEdit(props) {
     , refs.start
     , refs.end
     , refs.description
+    , refs.priority
     , refs.tags
     , refs.fixed
   ])
@@ -113,6 +116,7 @@ function WorkExperienceEdit(props) {
       start       : refs.start.current.value,
       end         : refs.end.current.value,
       description : refs.description.current.value,
+      priority    : refs.priority.current.value,
       fixed       : refs.fixed.current.checked,
       tags        : tagsResp
     }
@@ -173,6 +177,11 @@ function WorkExperienceEdit(props) {
         <input
           type="text"
           ref={refs.end}
+        />
+        <label>Priority :</label>
+        <input
+          type="text"
+          ref={refs.priority}
         />
         <label>Description :</label>
         <textArea

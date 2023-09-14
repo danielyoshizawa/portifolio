@@ -1,9 +1,10 @@
 import './WorkExperience.css'
 import {useState} from 'react'
 import WorkCard from './card/WorkCard'
+import order from '../util/order'
 
 function WorkExperience(props) {
-  const experiences = props.experiences
+  const experiences = order(props.experiences)
   const [showMore, setShowMore] = useState(false);
   return (
     <div id="experience">

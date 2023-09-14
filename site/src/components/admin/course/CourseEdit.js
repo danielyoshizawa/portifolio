@@ -9,7 +9,7 @@ import courseSchema from '../../../schemas/CourseSchema'
 function CourseEdit(props) {
   let params = useParams()
   const navigate = useNavigate()
-  // References
+  // References - TODO : Change to an array
   const nameRef = useRef()
   const linkRef = useRef()
   const validationRef = useRef()
@@ -17,6 +17,7 @@ function CourseEdit(props) {
   const dateRef = useRef()
   const fixedRef = useRef()
   const tagsRef = useRef([])
+  const priorityRef = useRef()
 
   const [status, setStatus] = useState("")
   const [tags, setTags] = useState([])
@@ -52,6 +53,7 @@ function CourseEdit(props) {
           validationRef.current.value  = resp.validation
           institutionRef.current.value = resp.institution
           dateRef.current.value        = resp.date
+          priorityRef.current.value    = resp.priority
           fixedRef.current.checked     = resp.fixed
 
           let tagsMap = new Map()
@@ -75,6 +77,7 @@ function CourseEdit(props) {
     , validationRef
     , institutionRef
     , dateRef
+    , priorityRef
     , fixedRef
     , tagsRef
   ])
@@ -105,6 +108,7 @@ function CourseEdit(props) {
       validation  : validationRef.current.value,
       institution : institutionRef.current.value,
       date        : dateRef.current.value,
+      priority    : priorityRef.current.value,
       fixed       : fixedRef.current.checked,
       tags        : tagsResp
     }
@@ -165,6 +169,11 @@ function CourseEdit(props) {
         <input
           type="text"
           ref={dateRef}
+        />
+        <label>Priority :</label>
+        <input
+          type="text"
+          ref={priorityRef}
         />
         <label>Tags</label>
         <ul className="admin-course-tag-list">
