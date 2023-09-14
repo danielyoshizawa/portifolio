@@ -27,6 +27,14 @@ function CourseCard(props) {
           <p>Year : {item.date}</p>
           <p>Fixed : {item.fixed ? "yes" : "no"}</p>
         </div>
+        <div className="admin-course-card-description-section">
+          <p>Tags : </p>
+          <ul className="admin-course-card-tag-list" data-testid="admin-course-card-tag-list">
+            { item.tags && item.tags.map((tag, index) => {
+              return (<li className="admin-course-card-tag-item" key={`tag-item-${index}`}>{tag && tag.properties ? tag.properties.name : ""}</li>)
+            })}
+          </ul>
+        </div>
       </div>
       <div className="admin-course-card-action">
         <button className="admin-course-card-action-item" key={"admin-course-card-action-edit-item-"+index} onClick={onEdit}><p>Edit</p></button>

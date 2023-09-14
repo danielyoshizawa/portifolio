@@ -16,12 +16,22 @@ function CourseEdit(props) {
   const institutionRef = useRef()
   const dateRef = useRef()
   const fixedRef = useRef()
+  const tagsRef = useRef([])
 
   const [status, setStatus] = useState("")
+  const [tags, setTags] = useState([])
   const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 
   // Load resource from database
   useEffect(() => {
+    // Fetch all the tags
+    fetch(serverAddress + "/tags")
+      .then((response) => response.json())
+      .then((json) =>{
+        const resp = JSON.parse(json)
+        setTags(resp.tags)
+      })
+
     // If it's a new entry, we don't need to load from the database
     if (props.action === "new") {
       return
@@ -43,9 +53,31 @@ function CourseEdit(props) {
           institutionRef.current.value = resp.institution
           dateRef.current.value        = resp.date
           fixedRef.current.checked     = resp.fixed
+
+          let tagsMap = new Map()
+          resp.tags && resp.tags.map((item) => {
+            if (item) {
+              tagsMap.set(item.identity, true)
+            }
+          })
+          tagsRef && tagsRef.current.map((item) => {
+            if (item && tagsMap.get(parseInt(item.value))) {
+              item.checked = true;
+            }
+          })
         }
       })
-  }, [props.action, params.id, serverAddress])
+  }, [props.action
+    , params.id
+    , serverAddress
+    , nameRef
+    , linkRef
+    , validationRef
+    , institutionRef
+    , dateRef
+    , fixedRef
+    , tagsRef
+  ])
 
   const validateItem = (item) => {
     let valid = true;
@@ -60,13 +92,21 @@ function CourseEdit(props) {
   const handleSubmit = (event) => {
     event.preventDefault()
 
+    let tagsResp = []
+    tagsRef.current.map((item) => {
+      if (item.checked) {
+        tagsResp.push({identity : item.value})
+      }
+    })
+
     const item = {
       name        : nameRef.current.value,
       link        : linkRef.current.value,
       validation  : validationRef.current.value,
       institution : institutionRef.current.value,
       date        : dateRef.current.value,
-      fixed       : fixedRef.current.checked
+      fixed       : fixedRef.current.checked,
+      tags        : tagsResp
     }
 
     if (!validateItem(item)) return
@@ -126,6 +166,18 @@ function CourseEdit(props) {
           type="text"
           ref={dateRef}
         />
+        <label>Tags</label>
+        <ul className="admin-course-tag-list">
+        {tags && tags.map((item, index) => {
+          return (
+            <li className="admin-course-tag-item" key={index}>
+              <input type="checkbox" value={item.id} ref={(element) => { tagsRef.current[index] = element }
+              } />
+              <p>{item.id} || {item.name} || {item.type}</p>
+            </li>
+          )
+        })}
+        </ul>
         <label>Fixed :</label>
         <input
           type="checkbox"
