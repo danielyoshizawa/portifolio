@@ -1,6 +1,6 @@
 const timezone = process.env.TIMEZONE
 
-async function Create(database, description) {
+async function Create(database, parameters) {
   let query = `
     CREATE (
       a:Description {
@@ -15,7 +15,7 @@ async function Create(database, description) {
   tags && tags.map((tag, index) => {
     query += `
       MATCH (t${index}:Tag)
-        WHERE ID(t${index}) = ${tag.idenditiy}
+        WHERE ID(t${index}) = ${tag.identity}
       MERGE (a)-[:TAGS {updated: datetime({timezone: $timezone})}]->(t${index})
       WITH *
     `
@@ -25,7 +25,7 @@ async function Create(database, description) {
   return await database.run(
     query,
     {
-      ...description,
+      ...parameters,
       timezone
     }
   )
