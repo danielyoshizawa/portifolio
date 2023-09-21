@@ -8,10 +8,12 @@ import Courses from '../../components/courses/Courses'
 import Education from '../../components/education/Education'
 import Footer from '../../components/footer/Footer'
 import Filter from '../../components/filter/Filter'
+import {Statistics} from '../../components/util/statistics'
 
 export const FilterContext = createContext('default')
 
 function Home() {
+  useEffect(() => { Statistics("Home") }, [])
   const [description, setDescription] = useState([{title: "", description: ""}]);
   const [education, setEducation] = useState({education: [{}]});
   const [course, setCourse] = useState({course: [{}]});
@@ -24,22 +26,22 @@ function Home() {
       .then((response) => response.json())
       .then((json) => {
         setDescription(JSON.parse(json))
-      })
-      fetch(serverAddress + "/education")
-        .then((response) => response.json())
-        .then((json) => {
-          setEducation(JSON.parse(json))
-      })
-      fetch(serverAddress + "/course")
-        .then((response) => response.json())
-        .then((json) => {
-          setCourse(JSON.parse(json))
-      })
-      fetch(serverAddress + "/workExperience")
-        .then((response) => response.json())
-        .then((json) => {
-          setWorkExperience(JSON.parse(json))
-      })
+    })
+    fetch(serverAddress + "/education")
+      .then((response) => response.json())
+      .then((json) => {
+        setEducation(JSON.parse(json))
+    })
+    fetch(serverAddress + "/course")
+      .then((response) => response.json())
+      .then((json) => {
+        setCourse(JSON.parse(json))
+    })
+    fetch(serverAddress + "/workExperience")
+      .then((response) => response.json())
+      .then((json) => {
+        setWorkExperience(JSON.parse(json))
+    })
   }, [])
 
   return (

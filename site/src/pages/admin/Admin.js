@@ -2,8 +2,10 @@ import './Admin.css'
 import {Outlet, Link, useNavigate} from 'react-router-dom'
 import {useEffect} from 'react'
 import { getCookie } from '../../components/util/cookieManipulation'
+import {Statistics} from '../../components/util/statistics'
 
 function Admin() {
+  useEffect(() => { Statistics("Admin") }, [])
   const navigate = useNavigate()
   const serverAddress = process.env.REACT_APP_SERVER_ADDRESS
 

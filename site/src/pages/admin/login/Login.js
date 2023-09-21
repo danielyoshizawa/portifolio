@@ -1,9 +1,11 @@
 import './Login.css'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import { setCookie } from '../../../components/util/cookieManipulation'
 import {useNavigate} from 'react-router-dom'
+import {Statistics} from '../../../components/util/statistics'
 
 function Login() {
+  useEffect(() => { Statistics("Login") }, [])
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
   const [status, setStatus] = useState()
