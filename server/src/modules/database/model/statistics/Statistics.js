@@ -57,4 +57,13 @@ async function GetVisitors(database) {
   )
 }
 
-module.exports = {Create, GetVisitors}
+async function GetUniqueVisitorsCount(database) {
+  return await database.run(
+    `
+      MATCH (v:Visitor) RETURN COUNT(v) as total
+    `,
+    {}
+  )
+}
+
+module.exports = {Create, GetVisitors, GetUniqueVisitorsCount}

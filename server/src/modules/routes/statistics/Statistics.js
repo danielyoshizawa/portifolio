@@ -21,6 +21,17 @@ class Statistics {
         res.status(500).send(error)
       }
     })
+
+    this.app.get('/statistics/visitors/count', async (req, res) => {
+      try {
+        const records = await statistics.GetUniqueVisitorsCount(this.database)
+        let response = { total : records[0].get("total") }
+        res.status(200).json(JSON.stringify(response))
+      } catch (error) {
+        console.log(error)
+        res.status(500).send(error)
+      }
+    })
   }
 
   _update() {
