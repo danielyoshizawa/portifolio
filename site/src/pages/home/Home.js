@@ -42,7 +42,7 @@ function Home() {
       .then((json) => {
         setWorkExperience(JSON.parse(json))
     })
-  }, [])
+  }, [serverAddress])
 
   return (
     <>

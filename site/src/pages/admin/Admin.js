@@ -21,7 +21,7 @@ function Admin() {
     ).then((res) => {
       if (res.status !== 200) return navigate('/login')
     })
-  }, [navigate])
+  }, [navigate, serverAddress])
   return (
     <div className="admin">
       <div className="admin-left">
