@@ -6,6 +6,7 @@ const workExperience = require('./workExperience/WorkExperience')
 const education = require('./education/Education')
 const description = require('./description/Description')
 const auth = require('./auth/Auth')
+const statistics = require('./statistics/Statistics')
 
 dotenv.config()
 
@@ -39,6 +40,7 @@ class Routes {
     this.education = new education.Education(this.app, this.database, authenticateToken)
     this.description = new description.Description(this.app, this.database, authenticateToken)
     this.auth = new auth.Auth(this.app, generateAccessToken, authenticateToken)
+    this.statistics = new statistics.Statistics(this.app, this.database, authenticateToken)
   }
 
   initialize() {
@@ -48,6 +50,7 @@ class Routes {
     this.education.initialize()
     this.description.initialize()
     this.auth.initialize()
+    this.statistics.initialize()
   }
 }
 
