@@ -37,7 +37,6 @@ async function Create(database, parameters) {
             v.org = $org
         ON MATCH SET
           v.updated = datetime({timezone: $timezone})
-      WITH v
       MERGE (v)-[r:VISITED { page: $page }]-(t:Time {
         time: apoc.date.format(datetime({timezone: $timezone}).epochMillis, "ms", "yyyy-MM-dd hh:mm")
       })
